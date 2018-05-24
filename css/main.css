@@ -11,7 +11,7 @@ html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
-  font-family: helvetica; }
+  font-family: ap_letter, helvetica, arial, serif; }
 
 /*
  * Remove text-shadow in selection highlight:
@@ -80,6 +80,30 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+@font-face {
+  font-family: 'ap_letter';
+  src: url("../font/apletter-bold-webfont.woff2") format("woff2"), url("../font/apletter-bold-webfont.woff") format("woff");
+  font-weight: 600;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'ap_letter';
+  src: url("../font/apletter-light-webfont.woff2") format("woff2"), url("../font/apletter-light-webfont.woff") format("woff");
+  font-weight: 100;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'ap_letter';
+  src: url("../font/apletter-regular-webfont.woff2") format("woff2"), url("../font/apletter-regular-webfont.woff") format("woff");
+  font-weight: 400;
+  font-style: normal; }
+
+.centerHV {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
 #mainstage {
   width: 1024px;
   height: 768px;
@@ -135,7 +159,38 @@ textarea {
         width: 33%;
         display: inline-block;
         height: 100%;
-        background-color: #ff0; }
+        background-color: #ff0;
+        position: relative; }
+        #mainstage #navigation .nav_section_wrapper .nav_section h2 {
+          color: #fff;
+          font-weight: 100;
+          font-size: 30px; }
+        #mainstage #navigation .nav_section_wrapper .nav_section.nav_ff {
+          background-color: #6F6CD4; }
+        #mainstage #navigation .nav_section_wrapper .nav_section.nav_pp {
+          background-color: #817AE4; }
+        #mainstage #navigation .nav_section_wrapper .nav_section.nav_cs {
+          background-color: #615FC6; }
+  #mainstage #screensaver {
+    width: 984px;
+    height: 100%;
+    position: absolute;
+    left: 40px;
+    top: 0px;
+    display: none;
+    background-color: #3FBFAB; }
+    #mainstage #screensaver.open {
+      display: block; }
+    #mainstage #screensaver .ss_text li {
+      list-style: none;
+      font-weight: bold;
+      font-size: 30px;
+      color: #ffffff;
+      opacity: 1; }
+    #mainstage #screensaver .ss_fade-enter-active, #mainstage #screensaver .ss_fade-leave-active {
+      transition: opacity .5s; }
+    #mainstage #screensaver .ss_fade-enter, #mainstage #screensaver .ss_fade-leave-to {
+      opacity: 0; }
 
 /* ==========================================================================
    Helper classes

@@ -14,7 +14,7 @@ html {
     color: #222;
     font-size: 1em;
     line-height: 1.4;
-    font-family: helvetica;
+    font-family: ap_letter, helvetica, arial, serif;
 }
 
 /*
@@ -97,10 +97,60 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+// fonts
+
+@font-face {
+    font-family: 'ap_letter';
+    src: url('../font/apletter-bold-webfont.woff2') format('woff2'),
+         url('../font/apletter-bold-webfont.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'ap_letter';
+    src: url('../font/apletter-light-webfont.woff2') format('woff2'),
+         url('../font/apletter-light-webfont.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'ap_letter';
+    src: url('../font/apletter-regular-webfont.woff2') format('woff2'),
+         url('../font/apletter-regular-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+// helper functions
 $width : 1024px;
 $height: 768px;
 $menu-width: 40px;
 $canvas-width: $width - $menu-width;
+$white: #ffffff;
+
+@mixin h_cent() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// helper classes
+.centerHV{
+    @include h_cent;
+}
+
 #mainstage{
     width: $width;
     height: $height;
@@ -118,12 +168,12 @@ $canvas-width: $width - $menu-width;
             .title{
                 display: block;
                 width: 768px;
-                height: 40px;
+                height: $menu-width;
                 transform: rotate(-90deg);
                 position: absolute;
                 top: 100%;
                 left: 0px;
-                line-height: 40px;
+                line-height: $menu-width;
                 text-align: center;
                 transform-origin: top left;
             }
@@ -154,7 +204,7 @@ $canvas-width: $width - $menu-width;
             width: $canvas-width;
             height: 100%;
             position: absolute;
-            left: 40px;
+            left: $menu-width;
             display: none;
             &.open{
                 display: block;
@@ -164,8 +214,49 @@ $canvas-width: $width - $menu-width;
                 display: inline-block;
                 height: 100%;
                 background-color: #ff0;
-
+                position: relative;
+                h2{
+                    color: #fff;
+                    font-weight: 100;
+                    font-size: 30px;
+                }
+                &.nav_ff{
+                    background-color: #6F6CD4;
+                }                
+                &.nav_pp{
+                    background-color: #817AE4;
+                }                
+                &.nav_cs{
+                    background-color: #615FC6;
+                }
             }
+        }
+    }
+    #screensaver{
+        width: $canvas-width;
+        height: 100%;
+        position: absolute;
+        left: $menu-width;
+        top: 0px;
+        display: none;
+        background-color: #3FBFAB;
+        &.open{
+            display: block;
+        }
+        .ss_text{
+            li{
+                list-style: none;
+                font-weight: bold;
+                font-size: 30px;
+                color: $white;
+                opacity: 1;
+            }
+        }
+        .ss_fade-enter-active, .ss_fade-leave-active {
+          transition: opacity .5s;
+        }
+        .ss_fade-enter, .ss_fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+          opacity: 0;
         }
     }
 }

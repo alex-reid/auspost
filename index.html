@@ -29,17 +29,46 @@
         <a href="#" class="open"><span class="hbtop"></span><span class="hbbottom"></span></a>
       </div>
       <div class="nav_section_wrapper" v-bind:class="{ open: isOpen }">
-        <div class="nav_section nav_ff">
-          <h2>Fast Facts</h2>
-        </div>      
-        <div class="nav_section nav_pp">
-          <h2>Pain Points</h2>
-        </div>      
-        <div class="nav_section nav_cs">
-          <h2>Case Studies</h2>
+           
+        <div class="nav_section nav_pp" v-on:click="load_pp">
+          <div class="centerHV">
+            <img src="img/pain-points.svg" width="70" class="menu_img"/>
+            <h2>Government Pain Points</h2>
+          </div>
+        </div>    
+        <div class="nav_section nav_ff" v-on:click="load_ff">
+          <div class="centerHV">
+            <img src="img/fast-facts.svg" width="70" class="menu_img"/>
+            <h2>Fast Facts</h2>
+          </div>
+        </div>     
+        <div class="nav_section nav_cs" v-on:click="load_cs">
+          <div class="centerHV">
+            <img src="img/case-studies.svg" width="70" class="menu_img"/>
+            <h2>Case Studies</h2>
+          </div>
         </div>
       </div>
     </nav>
+    <section id="screensaver" v-bind:class="{ open: open }">
+      <ul class="ss_text">
+        <li class="centerHV" v-for="item in text">
+          <transition name="ss_fade">
+            <h2 v-if="item.id == current">{{ item.text }}</h2>
+          </transition>
+        </li>
+      </ul>
+    </section>
+
+    <section id="fast_facts">
+    </section>
+
+    <section id="pain_points">
+    </section>
+
+    <section id="case_studies">
+    </section>
+
 
   </div>
 
