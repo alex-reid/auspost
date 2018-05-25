@@ -51,6 +51,9 @@
       </div>
     </nav>
     <section id="screensaver" v-bind:class="{ open: open }">
+      <span class="ss_arrow" v-for="arrow in arrows" v-bind:style="{ left: arrow.x+'px', top: arrow.y+'px', transform: 'scale('+arrow.s+','+arrow.s+')'}">
+        <img src="img/ss_arrow.svg" width="150" v-bind:style="{ 'animation-delay': arrow.d+'ms' }"/>
+      </span>
       <ul class="ss_text">
         <li class="centerHV" v-for="item in text">
           <transition name="ss_fade">

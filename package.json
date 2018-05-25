@@ -20,5 +20,8 @@
     "gulp": "^3.9.1",
     "gulp-sass": "^4.0.1",
     "vue": "^2.5.16"
+  },
+  "devDependencies": {
+    "gulp-autoprefixer": "^5.0.0"
   }
 }

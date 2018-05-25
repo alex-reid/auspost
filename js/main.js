@@ -1,3 +1,8 @@
+// init vars
+
+var width = 1024;
+var height = 704;
+
 var menu = new Vue({
   el: '#navigation',
   data: {
@@ -37,18 +42,48 @@ var screensaver = new Vue({
 			{id: 5, text:"in disbursement"},
 			{id: 6, text:"and collection"}
 		],
+		arrows: [
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1},
+			{x:0,y:0,d:0,s:1}
+		],
 		current: 0
 	},
 	methods: {
 		init: function(){
 			this.destroy;
 			this.open = true;
+			for(var i = 0; i < this.arrows.length; i++){
+				this.arrows[i].x = Math.random() * width;
+				this.arrows[i].y = Math.random() * height;
+				this.arrows[i].d = Math.round(Math.random() * 4000);
+				this.arrows[i].s = Math.random() * .7 + .3;
+			}
 			ss_slide = setInterval(this.textFade, 2000);
 			menu.title = "";
 		},
 		textFade: function(){
 			var items = this.text.length;
 			if(this.current++ >= items) this.current = 1;
+		},
+		arrows_start : function() {
+			
 		},
 		destroy : function(){
 			clearInterval(ss_slide);

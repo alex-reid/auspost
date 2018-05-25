@@ -15,6 +15,7 @@ html {
     font-size: 1em;
     line-height: 1.4;
     font-family: ap_letter, helvetica, arial, serif;
+    position: fixed;
 }
 
 /*
@@ -134,7 +135,7 @@ textarea {
 
 // helper functions
 $width : 1024px;
-$height: 768px;
+$height: 704px;
 $menu-width: 40px;
 $canvas-width: $width - $menu-width;
 $white: #ffffff;
@@ -151,6 +152,24 @@ $white: #ffffff;
     @include h_cent;
 }
 
+// animations
+@keyframes ss_arrow{
+    0% {
+        transform: translateX(-150px);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(150px);
+        opacity: 0;
+    }
+}
+
 #mainstage{
     width: $width;
     height: $height;
@@ -163,11 +182,11 @@ $white: #ffffff;
             left: 0px;
             top:0px;
             width: $menu-width;
-            height: 100%;
+            height: $height;
             background-color: #fff;
             .title{
                 display: block;
-                width: 768px;
+                width: $height;
                 height: $menu-width;
                 transform: rotate(-90deg);
                 position: absolute;
@@ -240,6 +259,7 @@ $white: #ffffff;
         top: 0px;
         display: none;
         background-color: #3FBFAB;
+        overflow: hidden;
         &.open{
             display: block;
         }
@@ -257,6 +277,15 @@ $white: #ffffff;
         }
         .ss_fade-enter, .ss_fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
           opacity: 0;
+        }
+        .ss_arrow{
+            position: absolute;
+            img{
+                animation-name: ss_arrow;
+                animation-duration: 4s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
         }
     }
 }

@@ -11,7 +11,8 @@ html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
-  font-family: ap_letter, helvetica, arial, serif; }
+  font-family: ap_letter, helvetica, arial, serif;
+  position: fixed; }
 
 /*
  * Remove text-shadow in selection highlight:
@@ -102,11 +103,29 @@ textarea {
   position: absolute;
   top: 50%;
   left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
+
+@keyframes ss_arrow {
+  0% {
+    -webkit-transform: translateX(-150px);
+    -ms-transform: translateX(-150px);
+    transform: translateX(-150px);
+    opacity: 0; }
+  15% {
+    opacity: 1; }
+  85% {
+    opacity: 1; }
+  100% {
+    -webkit-transform: translateX(150px);
+    -ms-transform: translateX(150px);
+    transform: translateX(150px);
+    opacity: 0; } }
 
 #mainstage {
   width: 1024px;
-  height: 768px;
+  height: 704px;
   position: relative;
   background-color: #333; }
   #mainstage #navigation {
@@ -116,18 +135,22 @@ textarea {
       left: 0px;
       top: 0px;
       width: 40px;
-      height: 100%;
+      height: 704px;
       background-color: #fff; }
       #mainstage #navigation .bar .title {
         display: block;
-        width: 768px;
+        width: 704px;
         height: 40px;
+        -webkit-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
         transform: rotate(-90deg);
         position: absolute;
         top: 100%;
         left: 0px;
         line-height: 40px;
         text-align: center;
+        -webkit-transform-origin: top left;
+        -ms-transform-origin: top left;
         transform-origin: top left; }
       #mainstage #navigation .bar a.open {
         display: block;
@@ -178,7 +201,8 @@ textarea {
     left: 40px;
     top: 0px;
     display: none;
-    background-color: #3FBFAB; }
+    background-color: #3FBFAB;
+    overflow: hidden; }
     #mainstage #screensaver.open {
       display: block; }
     #mainstage #screensaver .ss_text li {
@@ -188,9 +212,22 @@ textarea {
       color: #ffffff;
       opacity: 1; }
     #mainstage #screensaver .ss_fade-enter-active, #mainstage #screensaver .ss_fade-leave-active {
+      -webkit-transition: opacity .5s;
+      -o-transition: opacity .5s;
       transition: opacity .5s; }
     #mainstage #screensaver .ss_fade-enter, #mainstage #screensaver .ss_fade-leave-to {
       opacity: 0; }
+    #mainstage #screensaver .ss_arrow {
+      position: absolute; }
+      #mainstage #screensaver .ss_arrow img {
+        -webkit-animation-name: ss_arrow;
+        animation-name: ss_arrow;
+        -webkit-animation-duration: 4s;
+        animation-duration: 4s;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+        animation-timing-function: linear; }
 
 /* ==========================================================================
    Helper classes
@@ -271,7 +308,7 @@ textarea {
 @media only screen and (min-width: 35em) {
   /* Style adjustments for viewports that meet the condition */ }
 
-@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+@media print, (-webkit-min-device-pixel-ratio: 1.25), (-o-min-device-pixel-ratio: 5 / 4), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
   /* Style adjustments for high resolution devices */ }
 
 /* ==========================================================================
