@@ -51,8 +51,8 @@
       </div>
     </nav>
     <section id="screensaver" v-bind:class="{ open: open }">
-      <span class="ss_arrow" v-for="arrow in arrows" v-bind:style="{ left: arrow.x+'px', top: arrow.y+'px', transform: 'scale('+arrow.s+','+arrow.s+')'}">
-        <img src="img/ss_arrow.svg" width="150" v-bind:style="{ 'animation-delay': arrow.d+'ms' }"/>
+      <span class="ss_arrow" v-for="arrow in arrows" v-bind:style="{ left: arrow.x+'px', top: arrow.y+'px', transform: 'scale('+arrow.s+','+arrow.s+')', opacity: arrow.s - .2}">
+        <img src="img/ss_arrow.svg" width="150" v-bind:style="{ 'animation-delay': -arrow.d+'ms' }"/>
       </span>
       <ul class="ss_text">
         <li class="centerHV" v-for="item in text">
@@ -64,6 +64,11 @@
     </section>
 
     <section id="fast_facts">
+      <ul id="ff_cards">
+        <li v-for="card in cards" v-bind:class="card.depth">
+          <img v-bind:src="card.img" width="300"/>
+        </li>
+      </ul>
     </section>
 
     <section id="pain_points">

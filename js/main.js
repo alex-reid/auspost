@@ -33,7 +33,7 @@ var ss_slide;
 var screensaver = new Vue({
 	el: '#screensaver',
 	data: {
-		open: true,
+		open: false,
 		text: [
 			{id: 1, text:"Our solutions"},
 			{id: 2, text:"solve"},
@@ -43,14 +43,6 @@ var screensaver = new Vue({
 			{id: 6, text:"and collection"}
 		],
 		arrows: [
-			{x:0,y:0,d:0,s:1},
-			{x:0,y:0,d:0,s:1},
-			{x:0,y:0,d:0,s:1},
-			{x:0,y:0,d:0,s:1},
-			{x:0,y:0,d:0,s:1},
-			{x:0,y:0,d:0,s:1},
-			{x:0,y:0,d:0,s:1},
-			{x:0,y:0,d:0,s:1},
 			{x:0,y:0,d:0,s:1},
 			{x:0,y:0,d:0,s:1},
 			{x:0,y:0,d:0,s:1},
@@ -71,11 +63,12 @@ var screensaver = new Vue({
 			this.open = true;
 			for(var i = 0; i < this.arrows.length; i++){
 				this.arrows[i].x = Math.random() * width;
-				this.arrows[i].y = Math.random() * height;
+				this.arrows[i].y = Math.random() * height - 80;
+				if(this.arrows[i].y > 260) this.arrows[i].y = this.arrows[i].y+80;
 				this.arrows[i].d = Math.round(Math.random() * 4000);
 				this.arrows[i].s = Math.random() * .7 + .3;
 			}
-			ss_slide = setInterval(this.textFade, 2000);
+			ss_slide = setInterval(this.textFade, 3000);
 			menu.title = "";
 		},
 		textFade: function(){
@@ -96,7 +89,21 @@ var screensaver = new Vue({
 var fast_facts = new Vue({
 	el: '#fast_facts',
 	data: {
-		open: false,
+		open: true,
+		cards: [
+			{ img: "img/ff_img.svg", depth: "lvl_1", text: "In over the counter financial services transactions annually" },
+			{ img: "img/ff_img.svg", depth: "lvl_2", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+			{ img: "img/ff_img.svg", depth: "lvl_3", text: "Integer vitae mauris enim. Nunc lobortis lacinia erat in egestas." },
+			{ img: "img/ff_img.svg", depth: "lvl_4", text: "Pellentesque quis dui turpis." },
+			{ img: "img/ff_img.svg", depth: "lvl_5", text: "Praesent vestibulum ligula quis nunc vulputate, non hendrerit magna posuere." }
+		]
+	},
+	methods:{
+		slide: function(){
+			for (var i = this.cards.length - 1; i >= 0; i--) {
+				this.cards[i].depth = "lvl_"+(i+2);
+			}
+		}
 	}
 })
 
@@ -115,11 +122,11 @@ function timeout(){
 $(document).ready(function() {
 
 	// init timeout
-	timeout();
+	//timeout();
 	$(window).click(function(event) {
 		screensaver.destroy();
 		clearTimeout(ss_timeout);
 		timeout();
 	});
-	screensaver.init();
+	//screensaver.init();
 });

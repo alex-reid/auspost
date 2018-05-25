@@ -273,10 +273,14 @@ $white: #ffffff;
             }
         }
         .ss_fade-enter-active, .ss_fade-leave-active {
-          transition: opacity .5s;
+          transition: opacity .5s, transform .5s;
         }
         .ss_fade-enter, .ss_fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
           opacity: 0;
+          transform: translateX(-20px);
+        }
+        .ss_fade-leave-to{
+            transform: translateX(20px);
         }
         .ss_arrow{
             position: absolute;
@@ -285,6 +289,68 @@ $white: #ffffff;
                 animation-duration: 4s;
                 animation-iteration-count: infinite;
                 animation-timing-function: linear;
+            }
+        }
+    }
+    #fast_facts{
+        width: $canvas-width;
+        height: 100%;
+        position: absolute;
+        left: $menu-width;
+        top: 0px;
+        //display: none;
+        background-color: #B3AFEE;
+        overflow: hidden;
+        &.open{
+            display: block;
+        }
+        #ff_cards{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 60px;
+            width: 350px;
+            height: 340px;
+            perspective: 130px;
+            perspective-origin: 150% 50%;
+            li{
+                position: absolute;
+                background-color: $white;
+                padding: 20px;
+                border-radius: 20px;
+                box-shadow: 10px 5px 20px rgba(0,0,0,0.2);
+                list-style: none;
+                transition: transform .5s, opacity .5s;
+                &.lvl_1{
+                    transform: translate3d(0,0,-40px);
+                    opacity: .2;
+                    z-index: 1;
+                }
+                &.lvl_2{
+                    transform: translate3d(0,0,-30px);
+                    opacity: .4;
+                    z-index: 2;
+                }
+                &.lvl_3{
+                    transform: translate3d(0,0,-20px);
+                    opacity: .6;
+                    z-index: 3;
+                }
+                &.lvl_4{
+                    transform: translate3d(0,0,-10px);
+                    opacity: .8;
+                    z-index: 4;
+                }
+                &.lvl_5{
+                    transform: translate3d(0,0,0px);
+                    opacity: 1;
+                    z-index: 5;
+                }
+                &.lvl_6{
+                    transform: translate3d(-360px,0,0px);
+                    opacity: 0;
+                    z-index: 6;
+                }
             }
         }
     }
