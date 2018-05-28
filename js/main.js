@@ -91,18 +91,30 @@ var fast_facts = new Vue({
 	data: {
 		open: true,
 		cards: [
-			{ img: "img/ff_img.svg", depth: "lvl_1", text: "In over the counter financial services transactions annually" },
-			{ img: "img/ff_img.svg", depth: "lvl_2", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-			{ img: "img/ff_img.svg", depth: "lvl_3", text: "Integer vitae mauris enim. Nunc lobortis lacinia erat in egestas." },
-			{ img: "img/ff_img.svg", depth: "lvl_4", text: "Pellentesque quis dui turpis." },
-			{ img: "img/ff_img.svg", depth: "lvl_5", text: "Praesent vestibulum ligula quis nunc vulputate, non hendrerit magna posuere." }
-		]
+			{ img: "img/ff_img.svg", depth: 1, text: "<h2>$35b</h2>In over the counter financial services transactions annually" },
+			{ img: "img/ff_img.svg", depth: 2, text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+			{ img: "img/ff_img.svg", depth: 3, text: "Integer vitae mauris enim. Nunc lobortis lacinia erat in egestas." },
+			{ img: "img/ff_img.svg", depth: 4, text: "Pellentesque quis dui turpis." },
+			{ img: "img/ff_img.svg", depth: 5, text: "Some test text." },
+			{ img: "img/ff_img.svg", depth: 6, text: "Praesent vestibulum ligula quis nunc vulputate, non hendrerit magna posuere." }
+		],
+		current: 1
 	},
 	methods:{
-		slide: function(){
+		slideOut: function(){
 			for (var i = this.cards.length - 1; i >= 0; i--) {
-				this.cards[i].depth = "lvl_"+(i+2);
+				this.cards[i].depth++;
+				if (this.cards[i].depth > 6) this.cards[i].depth = 1;
 			}
+		},
+		slideIn: function(){
+			for (var i = this.cards.length - 1; i >= 0; i--) {
+				this.cards[i].depth--;
+				if (this.cards[i].depth < 1) this.cards[i].depth = 6;
+			}
+		},
+		textUpdate: function(index){
+
 		}
 	}
 })

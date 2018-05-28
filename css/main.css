@@ -259,7 +259,9 @@ textarea {
       -webkit-perspective: 130px;
       perspective: 130px;
       -webkit-perspective-origin: 150% 50%;
-      perspective-origin: 150% 50%; }
+      perspective-origin: 150% 50%;
+      margin: 0;
+      padding: 0; }
       #mainstage #fast_facts #ff_cards li {
         position: absolute;
         background-color: #ffffff;
@@ -276,22 +278,22 @@ textarea {
         #mainstage #fast_facts #ff_cards li.lvl_1 {
           -webkit-transform: translate3d(0, 0, -40px);
           transform: translate3d(0, 0, -40px);
-          opacity: .2;
+          opacity: 0;
           z-index: 1; }
         #mainstage #fast_facts #ff_cards li.lvl_2 {
           -webkit-transform: translate3d(0, 0, -30px);
           transform: translate3d(0, 0, -30px);
-          opacity: .4;
+          opacity: .1;
           z-index: 2; }
         #mainstage #fast_facts #ff_cards li.lvl_3 {
           -webkit-transform: translate3d(0, 0, -20px);
           transform: translate3d(0, 0, -20px);
-          opacity: .6;
+          opacity: .4;
           z-index: 3; }
         #mainstage #fast_facts #ff_cards li.lvl_4 {
           -webkit-transform: translate3d(0, 0, -10px);
           transform: translate3d(0, 0, -10px);
-          opacity: .8;
+          opacity: .7;
           z-index: 4; }
         #mainstage #fast_facts #ff_cards li.lvl_5 {
           -webkit-transform: translate3d(0, 0, 0px);
@@ -303,6 +305,33 @@ textarea {
           transform: translate3d(-360px, 0, 0px);
           opacity: 0;
           z-index: 6; }
+    #mainstage #fast_facts .ff_text {
+      position: absolute;
+      right: 0px;
+      height: 100%;
+      width: 50%;
+      margin: 0;
+      padding: 0; }
+      #mainstage #fast_facts .ff_text li {
+        list-style: none;
+        font-size: 30px;
+        opacity: 1;
+        font-weight: 100; }
+    #mainstage #fast_facts .ff_fade-enter-active, #mainstage #fast_facts .ff_fade-leave-active {
+      -webkit-transition: opacity .5s, -webkit-transform .5s;
+      transition: opacity .5s, -webkit-transform .5s;
+      -o-transition: opacity .5s, transform .5s;
+      transition: opacity .5s, transform .5s;
+      transition: opacity .5s, transform .5s, -webkit-transform .5s; }
+    #mainstage #fast_facts .ff_fade-enter, #mainstage #fast_facts .ff_fade-leave-to {
+      opacity: 0;
+      -webkit-transform: translateX(20px);
+      -ms-transform: translateX(20px);
+      transform: translateX(20px); }
+    #mainstage #fast_facts .ff_fade-leave-to {
+      -webkit-transform: translateX(-20px);
+      -ms-transform: translateX(-20px);
+      transform: translateX(-20px); }
 
 /* ==========================================================================
    Helper classes

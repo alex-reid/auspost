@@ -65,8 +65,15 @@
 
     <section id="fast_facts">
       <ul id="ff_cards">
-        <li v-for="card in cards" v-bind:class="card.depth">
+        <li v-for="card in cards" v-bind:class="'lvl_'+card.depth">
           <img v-bind:src="card.img" width="300"/>
+        </li>
+      </ul>
+      <ul class="ff_text">
+        <li class="centerHV" v-for="card in cards">
+          <transition name="ff_fade">
+            <p v-if="card.depth == current" v-html="card.text"></p>
+          </transition>
         </li>
       </ul>
     </section>
