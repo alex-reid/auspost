@@ -14,6 +14,7 @@ var menu = new Vue({
   		this.isOpen = !this.isOpen;
   		screensaver.destroy();
   		fast_facts.destroy();
+  		case_studies.destroy(); 
   	},
   	load_ff: function(){
   		this.isOpen = false;
@@ -28,6 +29,8 @@ var menu = new Vue({
   	load_cs: function(){
   		this.isOpen = false;
   		this.title = "Case Studies"
+  		screensaver.destroy();
+  		case_studies.init();  	
   	}
   }
 })
@@ -147,7 +150,15 @@ var case_studies = new Vue({
 	el: '#case_studies',
 	data: {
 		open: false,
-		
+	},
+	methods:{
+		init: function(){
+			this.destroy();
+			this.open = true;
+		},
+		destroy: function(){
+			this.open = false;
+		}
 	}
 })
 
