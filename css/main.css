@@ -107,6 +107,9 @@ textarea {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
 
+strong {
+  font-weight: 800; }
+
 @keyframes ss_arrow {
   0% {
     -webkit-transform: translateX(-150px);
@@ -179,7 +182,7 @@ textarea {
       #mainstage #navigation .nav_section_wrapper.open {
         display: block; }
       #mainstage #navigation .nav_section_wrapper .nav_section {
-        width: 33%;
+        width: 33.33%;
         display: inline-block;
         height: 100%;
         background-color: #ff0;
@@ -243,6 +246,7 @@ textarea {
     position: absolute;
     left: 40px;
     top: 0px;
+    display: none;
     background-color: #B3AFEE;
     overflow: hidden; }
     #mainstage #fast_facts.open {

@@ -12,10 +12,14 @@ var menu = new Vue({
   methods: {
   	toggleMenu: function(){
   		this.isOpen = !this.isOpen;
+  		screensaver.destroy();
+  		fast_facts.destroy();
   	},
   	load_ff: function(){
   		this.isOpen = false;
   		this.title = "Fast Facts"
+  		screensaver.destroy();
+  		fast_facts.init();
   	},
   	load_pp: function(){
   		this.isOpen = false;
@@ -60,6 +64,7 @@ var screensaver = new Vue({
 	methods: {
 		init: function(){
 			this.destroy;
+  			fast_facts.destroy();
 			this.open = true;
 			for(var i = 0; i < this.arrows.length; i++){
 				this.arrows[i].x = Math.random() * width;
@@ -86,44 +91,88 @@ var screensaver = new Vue({
 	}
 })
 
+var ff_slide;
+var ff_int = 5000;
 var fast_facts = new Vue({
 	el: '#fast_facts',
 	data: {
-		open: true,
+		open: false,
 		cards: [
-			{ img: "img/ff_img.svg", depth: 1, text: "<h2>$35b</h2>In over the counter financial services transactions annually" },
-			{ img: "img/ff_img.svg", depth: 2, text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-			{ img: "img/ff_img.svg", depth: 3, text: "Integer vitae mauris enim. Nunc lobortis lacinia erat in egestas." },
-			{ img: "img/ff_img.svg", depth: 4, text: "Pellentesque quis dui turpis." },
-			{ img: "img/ff_img.svg", depth: 5, text: "Some test text." },
-			{ img: "img/ff_img.svg", depth: 6, text: "Praesent vestibulum ligula quis nunc vulputate, non hendrerit magna posuere." }
+			{ img: "img/ff_img.svg", depth: 1, text: "<strong>$35b</strong> In over the counter financial services transactions annually" },
+			{ img: "img/ff_img.svg", depth: 2, text: "Helping over <strong>750</strong> businesses and government agencies" },
+			{ img: "img/ff_img.svg", depth: 3, text: "<strong>30</strong> years of payment management experience" },
+			{ img: "img/ff_img.svg", depth: 4, text: "<strong>60%</strong> of Australian online transactions are powered through SecurePay" },
+			{ img: "img/ff_img.svg", depth: 5, text: "<strong>181M</strong> digital visits annually" },
+			{ img: "img/ff_img.svg", depth: 6, text: "More than <strong>3,500</strong> payment collection points across our network" }
 		],
 		current: 1
 	},
 	methods:{
+		init: function(){
+			this.destroy();
+			this.open = true;
+			this.setTimer();
+		},
+		destroy: function(){
+			this.open = false;
+			this.current = 1;
+			for (var i = this.cards.length -1; i >= 0; i--) {
+				this.cards[i].depth = i+1;
+			}
+			clearTimeout(ff_slide);
+		},
 		slideOut: function(){
+			this.setTimer();
 			for (var i = this.cards.length - 1; i >= 0; i--) {
 				this.cards[i].depth++;
 				if (this.cards[i].depth > 6) this.cards[i].depth = 1;
 			}
+			
 		},
 		slideIn: function(){
+			this.setTimer();
 			for (var i = this.cards.length - 1; i >= 0; i--) {
 				this.cards[i].depth--;
 				if (this.cards[i].depth < 1) this.cards[i].depth = 6;
 			}
 		},
-		textUpdate: function(index){
-
+		setTimer: function(){
+			clearTimeout(ff_slide);
+			ff_slide = setTimeout(this.slideOut, ff_int);
 		}
 	}
 })
 
+var case_studies = new Vue({
+	el: '#case_studies',
+	data: {
+		open: false,
+		
+	}
+})
+
+// touch gestures
+
+var myElement = document.getElementById('fast_facts');
+var mc = new Hammer(myElement);
+mc.on("swipe", function(ev){
+	//console.log(ev);
+	switch(ev.offsetDirection){
+		case 2:
+			//console.log('left');
+			fast_facts.slideOut();
+		break;
+		case 4:
+			//console.log('right')
+			fast_facts.slideIn();
+		break;
+	}
+})
 
 // jquery
 
 var ss_timeout;
-var time = 5000;
+var time = 30000;
 
 function timeout(){
 	ss_timeout = setTimeout(function(){

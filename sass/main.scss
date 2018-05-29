@@ -151,6 +151,9 @@ $white: #ffffff;
 .centerHV{
     @include h_cent;
 }
+strong{
+    font-weight: 800;
+}
 
 // animations
 @keyframes ss_arrow{
@@ -225,11 +228,12 @@ $white: #ffffff;
             position: absolute;
             left: $menu-width;
             display: none;
+
             &.open{
                 display: block;
             }
             .nav_section{
-                width: 33%;
+                width: 33.33%;
                 display: inline-block;
                 height: 100%;
                 background-color: #ff0;
@@ -298,7 +302,7 @@ $white: #ffffff;
         position: absolute;
         left: $menu-width;
         top: 0px;
-        //display: none;
+        display: none;
         background-color: #B3AFEE;
         overflow: hidden;
         &.open{

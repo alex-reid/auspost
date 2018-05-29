@@ -6,7 +6,9 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title></title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
 
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
@@ -35,14 +37,12 @@
             <img src="img/pain-points.svg" width="70" class="menu_img"/>
             <h2>Government Pain Points</h2>
           </div>
-        </div>    
-        <div class="nav_section nav_ff" v-on:click="load_ff">
+        </div><div class="nav_section nav_ff" v-on:click="load_ff">
           <div class="centerHV">
             <img src="img/fast-facts.svg" width="70" class="menu_img"/>
             <h2>Fast Facts</h2>
           </div>
-        </div>     
-        <div class="nav_section nav_cs" v-on:click="load_cs">
+        </div><div class="nav_section nav_cs" v-on:click="load_cs">
           <div class="centerHV">
             <img src="img/case-studies.svg" width="70" class="menu_img"/>
             <h2>Case Studies</h2>
@@ -63,7 +63,7 @@
       </ul>
     </section>
 
-    <section id="fast_facts">
+    <section id="fast_facts" v-bind:class="{ open: open }">
       <ul id="ff_cards">
         <li v-for="card in cards" v-bind:class="'lvl_'+card.depth">
           <img v-bind:src="card.img" width="300"/>
@@ -81,7 +81,43 @@
     <section id="pain_points">
     </section>
 
-    <section id="case_studies">
+    <section id="case_studies" v-bind:class="{ open: open }">
+      <div class="cs_container">
+        <div class="cs_1">
+          <span class="centerHV">
+            <h3>Case Study</h3>
+            <h2>Cash Disbursement</h2>
+          </span>
+          <div class="cs_copy">
+            <p>
+              Julia is a third generation sugar cane farmer from rural Queensland. When heavy rains caused the Herbert River to break its banks and floodwaters inundated her property, she lost everything. Her home. Her livelihood.
+            </p>
+            <p>
+              Luckily, help was on its way thanks to Australia Post’s disbursement services. As Julia took refuge with her neighbours in the town’s civic centre, she was pleased to receive an SMS notification that her emergency payment was already ready. Immediately, she was able to verify her identity with the pin code provided and collect her emergency payment at her local post office.
+            </p>
+            <p>
+              With the help of the fast-tracked government disaster relief funds, Julia was able to begin rebuilding her life.
+            </p>
+          </div>
+        </div>
+        <div class="cs_2">
+          <span class="centerHV">
+            <h3>Case Study</h3>
+            <h2>Bill Management</h2>
+          </span>
+          <div class="cs_copy">
+            <p>
+              Matt, a stay-at-home dad, dreaded the arrival of bills in the mail. He always intended on paying them quickly but there was never a convenient time, place or method. 
+            </p>
+            <p>
+              Things changed when he heard about the AusPost app he already used for tracking parcels. Matt has always trusted Australia Post to deliver his bills, so trusting them to pay bills too seemed like a no-brainer. Matt now receives most of his bills directly through the app, allowing him to pay them whenever he wants. 
+            </p>
+            <p>
+              This simple, convenient solution helped Matt become more confident in managing the
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
 
