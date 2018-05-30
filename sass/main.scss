@@ -136,7 +136,7 @@ textarea {
 // helper functions
 $width : 1024px;
 $height: 704px;
-$menu-width: 40px;
+$menu-width: 70px;
 $canvas-width: $width - $menu-width;
 $white: #ffffff;
 
@@ -202,33 +202,36 @@ strong{
             a.open{
                 display: block;
                 position: absolute;
-                width: 40px;
-                height: 40px;
+                width: $menu-width;
+                height: $menu-width;
                 top: 0px;
                 left: 0px;
                 .hbtop, .hbbottom{
                     position: absolute;
                     display: block;
                     width: 26px;
-                    height: 2px;
+                    height: 1px;
                     background-color: #f00;
-                    left: 7px;
+                    left: 22px;
                 }
                 .hbtop{
-                    top: 14px; 
+                    top: $menu-width / 2.5; 
                 }
                 .hbbottom{
-                    bottom: 14px; 
+                    bottom: $menu-width / 2.5; 
                 }
             }
         }
+
         .nav_section_wrapper{
-            width: $canvas-width;
+            width: $width;
             height: 100%;
             position: absolute;
-            left: $menu-width;
-            display: none;
-
+            left: 0px;
+            //display: none;
+            opacity: 1;
+            overflow: hidden;
+            z-index: 300;
             &.open{
                 display: block;
             }
@@ -243,16 +246,65 @@ strong{
                     font-weight: 100;
                     font-size: 30px;
                 }
-                &.nav_ff{
-                    background-color: #6F6CD4;
-                }                
                 &.nav_pp{
                     background-color: #817AE4;
+                    z-index: 5;
+                }                
+                &.nav_ff{
+                    background-color: #6F6CD4;
+                    z-index: 4;
                 }                
                 &.nav_cs{
                     background-color: #615FC6;
+                    z-index: 3;
                 }
             }
+            .menu_close{
+                z-index: 6;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+        }
+        .menu_open-enter-active, .menu_open-leave-active{
+            transition: opacity .5s;
+            .nav_section{
+                transition: opacity .5s, transform .3s;
+            }            
+        }
+        .menu_open-enter-active {
+            .nav_section{
+                &.nav_pp{
+                    transition-delay: 0s;
+                }                
+                &.nav_ff{
+                    transition-delay: 0.2s;
+                }                
+                &.nav_cs{
+                    transition-delay: 0.4s;
+                }
+            }
+        }        
+        .menu_open-leave-active {
+            .nav_section{
+                &.nav_pp{
+                    transition-delay: 0.4s;
+                }                
+                &.nav_ff{
+                    transition-delay: 0.2s;
+                }                
+                &.nav_cs{
+                    transition-delay: 0s;
+                }
+            }
+        }
+        .menu_open-enter, .menu_open-leave-to /* .fade-leave-active below version 2.1.8 */ {
+            opacity: 0;
+            .nav_section{
+                opacity: 0;
+                transform: translatex(-50%);
+            }
+          
         }
     }
     #screensaver{
@@ -261,11 +313,13 @@ strong{
         position: absolute;
         left: $menu-width;
         top: 0px;
-        display: none;
+        //display: none;
         background-color: #3FBFAB;
         overflow: hidden;
         &.open{
             display: block;
+            opacity: 1;
+
         }
         .ss_text{
             li{

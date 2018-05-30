@@ -30,38 +30,42 @@
         <span class="title">{{ title }}</span>
         <a href="#" class="open"><span class="hbtop"></span><span class="hbbottom"></span></a>
       </div>
-      <div class="nav_section_wrapper" v-bind:class="{ open: isOpen }">
-           
-        <div class="nav_section nav_pp" v-on:click="load_pp">
-          <div class="centerHV">
-            <img src="img/pain-points.svg" width="70" class="menu_img"/>
-            <h2>Government Pain Points</h2>
+      <transition :duration="1000" name="menu_open">
+        <div class="nav_section_wrapper" v-if="isOpen">           
+          <div class="nav_section nav_pp" v-on:click="load_pp">
+            <div class="centerHV">
+              <img src="img/pain-points.svg" width="70" class="menu_img"/>
+              <h2>Government Pain Points</h2>
+            </div>
+          </div><div class="nav_section nav_ff" v-on:click="load_ff">
+            <div class="centerHV">
+              <img src="img/fast-facts.svg" width="70" class="menu_img"/>
+              <h2>Fast Facts</h2>
+            </div>
+          </div><div class="nav_section nav_cs" v-on:click="load_cs">
+            <div class="centerHV">
+              <img src="img/case-studies.svg" width="70" class="menu_img"/>
+              <h2>Case Studies</h2>
+            </div>
           </div>
-        </div><div class="nav_section nav_ff" v-on:click="load_ff">
-          <div class="centerHV">
-            <img src="img/fast-facts.svg" width="70" class="menu_img"/>
-            <h2>Fast Facts</h2>
-          </div>
-        </div><div class="nav_section nav_cs" v-on:click="load_cs">
-          <div class="centerHV">
-            <img src="img/case-studies.svg" width="70" class="menu_img"/>
-            <h2>Case Studies</h2>
-          </div>
+          <img class="menu_close" src="img/close-x.svg" width="30px" v-on:click="isOpen = false"/>
         </div>
-      </div>
+      </transition>
     </nav>
-    <section id="screensaver" v-bind:class="{ open: open }">
-      <span class="ss_arrow" v-for="arrow in arrows" v-bind:style="{ left: arrow.x+'px', top: arrow.y+'px', transform: 'scale('+arrow.s+','+arrow.s+')', opacity: arrow.s - .2}">
-        <img src="img/ss_arrow.svg" width="150" v-bind:style="{ 'animation-delay': -arrow.d+'ms' }"/>
-      </span>
-      <ul class="ss_text">
-        <li class="centerHV" v-for="item in text">
-          <transition name="ss_fade">
-            <h2 v-if="item.id == current">{{ item.text }}</h2>
-          </transition>
-        </li>
-      </ul>
-    </section>
+    <transition name="ss_fadein">
+      <section id="screensaver" v-if="open">
+        <span class="ss_arrow" v-for="arrow in arrows" v-bind:style="{ left: arrow.x+'px', top: arrow.y+'px', transform: 'scale('+arrow.s+','+arrow.s+')', opacity: arrow.s - .2}">
+          <img src="img/ss_arrow.svg" width="150" v-bind:style="{ 'animation-delay': -arrow.d+'ms' }"/>
+        </span>
+        <ul class="ss_text">
+          <li class="centerHV" v-for="item in text">
+            <transition name="ss_fade">
+              <h2 v-if="item.id == current">{{ item.text }}</h2>
+            </transition>
+          </li>
+        </ul>
+      </section>
+    </transition>
 
     <section id="fast_facts" v-bind:class="{ open: open }">
       <ul id="ff_cards">

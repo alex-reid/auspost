@@ -1,3 +1,14 @@
+// assets manifest
+assets = [
+	"img/cs_1.jpg",
+	"img/cs_2.jpg",
+	"img/fast-facts.svg",
+	"img/ff_img.svg",
+	"img/pain-points.svg",
+	"img/case-studies.svg",
+	"img/ss_arrow.svg"
+];
+
 // init vars
 
 var width = 1024;
@@ -78,6 +89,7 @@ var screensaver = new Vue({
 			}
 			ss_slide = setInterval(this.textFade, 3000);
 			menu.title = "";
+			menu.isOpen = false
 		},
 		textFade: function(){
 			var items = this.text.length;
