@@ -127,8 +127,10 @@ strong {
     opacity: 0; } }
 
 #mainstage {
-  width: 1024px;
-  height: 704px;
+  width: 100vw;
+  max-width: 1366px;
+  height: 100vh;
+  max-height: 1024px;
   position: relative;
   background-color: #333; }
   #mainstage #navigation {
@@ -138,11 +140,11 @@ strong {
       left: 0px;
       top: 0px;
       width: 70px;
-      height: 704px;
+      height: 100vh;
       background-color: #fff; }
       #mainstage #navigation .bar .title {
         display: block;
-        width: 704px;
+        width: 100vh;
         height: 70px;
         -webkit-transform: rotate(-90deg);
         -ms-transform: rotate(-90deg);
@@ -174,7 +176,7 @@ strong {
         #mainstage #navigation .bar a.open .hbbottom {
           bottom: 28px; }
     #mainstage #navigation .nav_section_wrapper {
-      width: 1024px;
+      width: 100vw;
       height: 100%;
       position: absolute;
       left: 0px;
@@ -249,7 +251,7 @@ strong {
         -ms-transform: translatex(-50%);
         transform: translatex(-50%); }
   #mainstage #screensaver {
-    width: 954px;
+    width: calc(100vw - 70px);
     height: 100%;
     position: absolute;
     left: 70px;
@@ -292,7 +294,7 @@ strong {
         -webkit-animation-timing-function: linear;
         animation-timing-function: linear; }
   #mainstage #fast_facts {
-    width: 954px;
+    width: calc(100vw - 70px);
     height: 100%;
     position: absolute;
     left: 70px;
@@ -388,7 +390,7 @@ strong {
       -ms-transform: translateX(-20px);
       transform: translateX(-20px); }
   #mainstage #case_studies {
-    width: 954px;
+    width: calc(100vw - 70px);
     height: 100%;
     position: absolute;
     left: 70px;

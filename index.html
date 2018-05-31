@@ -67,7 +67,7 @@
       </section>
     </transition>
 
-    <section id="fast_facts" v-bind:class="{ open: open }">
+    <section id="fast_facts" v-if="open" v-bind:class="{ open: open }">
       <ul id="ff_cards">
         <li v-for="card in cards" v-bind:class="'lvl_'+card.depth">
           <img v-bind:src="card.img" width="300"/>
@@ -87,7 +87,7 @@
 
     <section id="case_studies" v-bind:class="{ open: open }">
       <div class="cs_container">
-        <div class="cs_1">
+        <div class="cs_1" v-on:click="">
           <span class="centerHV">
             <h3>Case Study</h3>
             <h2>Cash Disbursement</h2>

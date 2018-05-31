@@ -11,8 +11,10 @@ assets = [
 
 // init vars
 
-var width = 1024;
-var height = 704;
+//var width = 1024;
+var width = document.getElementById("mainstage").offsetWidth;
+//var height = 704;
+var height = document.getElementById("mainstage").offsetHeight;
 
 var menu = new Vue({
   el: '#navigation',
@@ -24,23 +26,28 @@ var menu = new Vue({
   	toggleMenu: function(){
   		this.isOpen = !this.isOpen;
   		screensaver.destroy();
-  		fast_facts.destroy();
-  		case_studies.destroy(); 
+  		//fast_facts.destroy();
+  		//case_studies.destroy(); 
   	},
   	load_ff: function(){
   		this.isOpen = false;
   		this.title = "Fast Facts"
   		screensaver.destroy();
+  		case_studies.destroy(); 
   		fast_facts.init();
+//  		fast_facts.open = true;
   	},
   	load_pp: function(){
   		this.isOpen = false;
   		this.title = "Pain Points"
+  		case_studies.destroy();
+  		fast_facts.destroy();
   	},
   	load_cs: function(){
   		this.isOpen = false;
   		this.title = "Case Studies"
   		screensaver.destroy();
+  		fast_facts.destroy();
   		case_studies.init();  	
   	}
   }
@@ -78,7 +85,7 @@ var screensaver = new Vue({
 	methods: {
 		init: function(){
 			this.destroy;
-  			fast_facts.destroy();
+  			//fast_facts.destroy();
 			this.open = true;
 			for(var i = 0; i < this.arrows.length; i++){
 				this.arrows[i].x = Math.random() * width;
@@ -127,6 +134,8 @@ var fast_facts = new Vue({
 			this.destroy();
 			this.open = true;
 			this.setTimer();
+			// run touch init after element is rendered
+			this.$nextTick( this.touch )
 		},
 		destroy: function(){
 			this.open = false;
@@ -154,6 +163,23 @@ var fast_facts = new Vue({
 		setTimer: function(){
 			clearTimeout(ff_slide);
 			ff_slide = setTimeout(this.slideOut, ff_int);
+		},
+		touch: function(){
+			// touch gestures
+			var mc = new Hammer(this.$el);
+			// console.log('te init');
+			mc.on("swipe", function(ev){
+				switch(ev.offsetDirection){
+					case 2:
+						// console.log('left');
+						fast_facts.slideOut();
+					break;
+					case 4:
+						// console.log('right')
+						fast_facts.slideIn();
+					break;
+				}
+			})
 		}
 	}
 })
@@ -171,24 +197,6 @@ var case_studies = new Vue({
 		destroy: function(){
 			this.open = false;
 		}
-	}
-})
-
-// touch gestures
-
-var myElement = document.getElementById('fast_facts');
-var mc = new Hammer(myElement);
-mc.on("swipe", function(ev){
-	//console.log(ev);
-	switch(ev.offsetDirection){
-		case 2:
-			//console.log('left');
-			fast_facts.slideOut();
-		break;
-		case 4:
-			//console.log('right')
-			fast_facts.slideIn();
-		break;
 	}
 })
 

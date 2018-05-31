@@ -134,10 +134,12 @@ textarea {
 }
 
 // helper functions
-$width : 1024px;
-$height: 704px;
+$width : 100vw;
+//$width : 1024px;
+$height: 100vh;
+//$height: 704px;
 $menu-width: 70px;
-$canvas-width: $width - $menu-width;
+$canvas-width: calc(#{$width} - #{$menu-width});
 $white: #ffffff;
 
 @mixin h_cent() {
@@ -175,7 +177,9 @@ strong{
 
 #mainstage{
     width: $width;
+    //max-width: 1366px;
     height: $height;
+    //max-height: 1024px;
     position: relative;
     background-color: #333;
     #navigation{
