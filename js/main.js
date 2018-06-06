@@ -183,6 +183,16 @@ var fast_facts = new Vue({
 	}
 })
 
+var pain_points = new Vue({
+	el: "#pain_points",
+	data: {
+		open: true
+	},
+	methods: {
+
+	}
+})
+
 var vid1, vid2;
 var case_studies = new Vue({
 	el: '#case_studies',

@@ -292,6 +292,53 @@ strong {
         animation-iteration-count: infinite;
         -webkit-animation-timing-function: linear;
         animation-timing-function: linear; }
+  #mainstage #pain_points {
+    width: calc(100vw - 70px);
+    height: 100%;
+    position: absolute;
+    left: 70px;
+    top: 0px;
+    display: none;
+    background-color: #7EB6D8;
+    overflow: hidden; }
+    #mainstage #pain_points .circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: #4A86A6;
+      position: absolute; }
+      #mainstage #pain_points .circle .inner_1 {
+        width: 75%;
+        height: 75%;
+        border-radius: 50%;
+        position: absolute;
+        left: 12.5%;
+        top: 12.5%;
+        background-color: #639DBF; }
+      #mainstage #pain_points .circle .inner_2 {
+        width: 50%;
+        height: 50%;
+        border-radius: 50%;
+        background-color: #F8F5F3;
+        position: absolute;
+        left: 25%;
+        top: 25%; }
+      #mainstage #pain_points .circle .center {
+        width: 25%;
+        height: 25%;
+        border-radius: 50%;
+        background-color: #7EB6D8;
+        position: absolute;
+        left: 37.5%;
+        top: 37.5%; }
+      #mainstage #pain_points .circle.foreground {
+        background-color: #817AE4; }
+        #mainstage #pain_points .circle.foreground .inner_1 {
+          background-color: #B3AFEE; }
+        #mainstage #pain_points .circle.foreground .inner_2 {
+          background-color: #F8F5F3; }
+        #mainstage #pain_points .circle.foreground .center {
+          background-color: #817AE4; }
   #mainstage #fast_facts {
     width: calc(100vw - 70px);
     height: 100%;
@@ -386,7 +433,8 @@ strong {
         padding: 0;
         width: 80%; }
         #mainstage #fast_facts .ff_text li p {
-          font-size: 3rem; }
+          font-size: 3rem;
+          line-height: 3.2rem; }
     #mainstage #fast_facts .ff_fade-enter-active, #mainstage #fast_facts .ff_fade-leave-active {
       -webkit-transition: opacity .5s, -webkit-transform .5s;
       transition: opacity .5s, -webkit-transform .5s;
