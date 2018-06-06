@@ -4,14 +4,15 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title></title>
-  <meta name="description" content="">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+  <title>AusPost Event App</title>
+  <meta name="description" content="Offline web app">
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-
-
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="AusPost Event App"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="white"/>
+  <meta name="theme-color" content="#ebe5df"/>
   <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="apple-touch-icon" href="icon-192x192.png">
   <!-- Place favicon.ico in the root directory -->
 
   <link rel="stylesheet" href="css/normalize.css">
@@ -53,7 +54,7 @@
       </transition>
     </nav>
     <transition name="ss_fadein">
-      <section id="screensaver" v-if="open">
+      <section id="screensaver" v-if="open" v-on:click="destroy">
         <span class="ss_arrow" v-for="arrow in arrows" v-bind:style="{ left: arrow.x+'px', top: arrow.y+'px', transform: 'scale('+arrow.s+','+arrow.s+')', opacity: arrow.s - .2}">
           <img src="img/ss_arrow.svg" width="150" v-bind:style="{ 'animation-delay': -arrow.d+'ms' }"/>
         </span>
@@ -86,40 +87,64 @@
     </section>
 
     <section id="case_studies" v-bind:class="{ open: open }">
-      <div class="cs_container">
-        <div class="cs_1" v-on:click="">
-          <span class="centerHV">
-            <h3>Case Study</h3>
-            <h2>Cash Disbursement</h2>
-          </span>
-          <div class="cs_copy">
-            <p>
-              Julia is a third generation sugar cane farmer from rural Queensland. When heavy rains caused the Herbert River to break its banks and floodwaters inundated her property, she lost everything. Her home. Her livelihood.
-            </p>
-            <p>
-              Luckily, help was on its way thanks to Australia Post’s disbursement services. As Julia took refuge with her neighbours in the town’s civic centre, she was pleased to receive an SMS notification that her emergency payment was already ready. Immediately, she was able to verify her identity with the pin code provided and collect her emergency payment at her local post office.
-            </p>
-            <p>
-              With the help of the fast-tracked government disaster relief funds, Julia was able to begin rebuilding her life.
-            </p>
-          </div>
+      <div class="cs_container" v-bind:class="[ current ]">
+        <div class="cs_1" v-on:click="current = 'cs1'; play('cs1')">
+          <video paused loop id="cs_vid_1">
+            <source src="img/cs2.mp4" type="video/mp4" />         
+          </video>
+          <transition name="cs_text_fade">
+            <div v-if="current == 'cs1'" class="blackout"></div>
+          </transition>
+          <transition name="cs_text_fade">
+            <span v-if="current == 'closed'" class="centerHV">
+              <h3>Case Study</h3>
+              <h2>Cash Disbursement</h2>
+            </span>
+          </transition>
+          <transition name="cs_fade">
+            <div v-if="current == 'cs1'" class="cs_copy">
+              <h3 v-on:click.stop="current = 'closed'; play(false)">< Back to Case Studies</h3>
+              <h2>Cash Disbursement</h2>
+              <p>
+                Julia is a third generation sugar cane farmer from rural Queensland. When heavy rains caused the Herbert River to break its banks and floodwaters inundated her property, she lost everything. Her home. Her livelihood.
+              </p>
+              <p>
+                Luckily, help was on its way thanks to Australia Post’s disbursement services. As Julia took refuge with her neighbours in the town’s civic centre, she was pleased to receive an SMS notification that her emergency payment was already ready. Immediately, she was able to verify her identity with the pin code provided and collect her emergency payment at her local post office.
+              </p>
+              <p>
+                With the help of the fast-tracked government disaster relief funds, Julia was able to begin rebuilding her life.
+              </p>
+            </div>
+          </transition>
         </div><!--
-        --><div class="cs_2">
-          <span class="centerHV">
-            <h3>Case Study</h3>
-            <h2>Bill Management</h2>
-          </span>
-          <div class="cs_copy">
-            <p>
-              Matt, a stay-at-home dad, dreaded the arrival of bills in the mail. He always intended on paying them quickly but there was never a convenient time, place or method. 
-            </p>
-            <p>
-              Things changed when he heard about the AusPost app he already used for tracking parcels. Matt has always trusted Australia Post to deliver his bills, so trusting them to pay bills too seemed like a no-brainer. Matt now receives most of his bills directly through the app, allowing him to pay them whenever he wants. 
-            </p>
-            <p>
-              This simple, convenient solution helped Matt become more confident in managing the
-            </p>
-          </div>
+     --><div class="cs_2" v-on:click.stop="current = 'cs2'; play('cs2')">
+          <video paused loop id="cs_vid_2">
+            <source src="img/cs1.mp4" type="video/mp4" />        
+          </video>
+          <transition name="cs_text_fade">
+            <div v-if="current == 'cs2'" class="blackout"></div>
+          </transition>
+          <transition name="cs_text_fade">
+            <span v-if="current == 'closed'" class="centerHV">
+              <h3>Case Study</h3>
+              <h2>Bill Management</h2>
+            </span>
+          </transition>
+          <transition name="cs_fade">
+            <div v-if="current == 'cs2'" class="cs_copy">
+              <h3 v-on:click.stop="current = 'closed'; play(false)">< Back to Case Studies</h3>
+              <h2>Cash Disbursement</h2>
+              <p>
+                Matt, a stay-at-home dad, dreaded the arrival of bills in the mail. He always intended on paying them quickly but there was never a convenient time, place or method. 
+              </p>
+              <p>
+                Things changed when he heard about the AusPost app he already used for tracking parcels. Matt has always trusted Australia Post to deliver his bills, so trusting them to pay bills too seemed like a no-brainer. Matt now receives most of his bills directly through the app, allowing him to pay them whenever he wants. 
+              </p>
+              <p>
+                This simple, convenient solution helped Matt become more confident in managing the
+              </p>
+            </div>
+          </transition>
         </div>
       </div>
     </section>
@@ -133,13 +158,6 @@
   <script src="js/plugins.js"></script>
   <script src="js/vue.js"></script>
   <script src="js/main.js"></script>
-
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 </body>
 
 </html>

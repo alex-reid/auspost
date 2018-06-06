@@ -127,10 +127,9 @@ strong {
     opacity: 0; } }
 
 #mainstage {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   width: 100vw;
-  max-width: 1366px;
   height: 100vh;
-  max-height: 1024px;
   position: relative;
   background-color: #333; }
   #mainstage #navigation {
@@ -251,13 +250,13 @@ strong {
         -ms-transform: translatex(-50%);
         transform: translatex(-50%); }
   #mainstage #screensaver {
-    width: calc(100vw - 70px);
+    width: 100vw;
     height: 100%;
     position: absolute;
-    left: 70px;
     top: 0px;
     background-color: #3FBFAB;
-    overflow: hidden; }
+    overflow: hidden;
+    z-index: 1000; }
     #mainstage #screensaver.open {
       display: block;
       opacity: 1; }
@@ -310,15 +309,24 @@ strong {
       -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
       transform: translateY(-50%);
-      left: 60px;
-      width: 350px;
-      height: 340px;
+      left: 40px;
+      width: 500px;
+      height: 355px;
       -webkit-perspective: 130px;
       perspective: 130px;
       -webkit-perspective-origin: 150% 50%;
       perspective-origin: 150% 50%;
       margin: 0;
-      padding: 0; }
+      padding: 0;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start; }
       #mainstage #fast_facts #ff_cards li {
         position: absolute;
         background-color: #ffffff;
@@ -373,7 +381,12 @@ strong {
         list-style: none;
         font-size: 30px;
         opacity: 1;
-        font-weight: 100; }
+        font-weight: 100;
+        margin: 0;
+        padding: 0;
+        width: 80%; }
+        #mainstage #fast_facts .ff_text li p {
+          font-size: 3rem; }
     #mainstage #fast_facts .ff_fade-enter-active, #mainstage #fast_facts .ff_fade-leave-active {
       -webkit-transition: opacity .5s, -webkit-transform .5s;
       transition: opacity .5s, -webkit-transform .5s;
@@ -412,19 +425,116 @@ strong {
         font-size: 36px; }
       #mainstage #case_studies .cs_container .centerHV {
         width: 100%; }
-      #mainstage #case_studies .cs_container .cs_copy {
-        display: none; }
       #mainstage #case_studies .cs_container .cs_1, #mainstage #case_studies .cs_container .cs_2 {
         position: relative;
         width: 50%;
         height: 100%;
         display: inline-block;
         background: no-repeat center center;
-        background-size: cover; }
+        background-size: cover;
+        overflow: hidden;
+        -webkit-transition: width .5s .3s;
+        -o-transition: width .5s .3s;
+        transition: width .5s .3s; }
+        #mainstage #case_studies .cs_container .cs_1 video, #mainstage #case_studies .cs_container .cs_2 video {
+          width: 177.77vh;
+          height: 100vh;
+          position: absolute;
+          top: 0px; }
+        #mainstage #case_studies .cs_container .cs_1 .cs_copy, #mainstage #case_studies .cs_container .cs_2 .cs_copy {
+          position: absolute;
+          width: calc(50vw - 4rem);
+          height: calc(100vh - 8rem);
+          border-radius: 1rem;
+          background-color: #ffffff;
+          -webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+          box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+          right: 0px;
+          margin: 4rem;
+          padding: 2rem;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          opacity: 1;
+          -webkit-transform: translateY(0);
+          -ms-transform: translateY(0);
+          transform: translateY(0); }
+          #mainstage #case_studies .cs_container .cs_1 .cs_copy h2, #mainstage #case_studies .cs_container .cs_1 .cs_copy h3, #mainstage #case_studies .cs_container .cs_2 .cs_copy h2, #mainstage #case_studies .cs_container .cs_2 .cs_copy h3 {
+            color: #000000;
+            text-shadow: none;
+            text-align: left;
+            font-weight: bold; }
+        #mainstage #case_studies .cs_container .cs_1 .blackout, #mainstage #case_studies .cs_container .cs_2 .blackout {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.4);
+          left: 0px;
+          top: 0px; }
+        #mainstage #case_studies .cs_container .cs_1 .cs_fade-enter-active, #mainstage #case_studies .cs_container .cs_2 .cs_fade-enter-active {
+          -webkit-transition: opacity .5s .5s, -webkit-transform .5s .5s;
+          transition: opacity .5s .5s, -webkit-transform .5s .5s;
+          -o-transition: opacity .5s .5s, transform .5s .5s;
+          transition: opacity .5s .5s, transform .5s .5s;
+          transition: opacity .5s .5s, transform .5s .5s, -webkit-transform .5s .5s; }
+        #mainstage #case_studies .cs_container .cs_1 .cs_fade-leave-active, #mainstage #case_studies .cs_container .cs_2 .cs_fade-leave-active {
+          -webkit-transition: opacity .3s, -webkit-transform .3s;
+          transition: opacity .3s, -webkit-transform .3s;
+          -o-transition: opacity .3s, transform .3s;
+          transition: opacity .3s, transform .3s;
+          transition: opacity .3s, transform .3s, -webkit-transform .3s; }
+        #mainstage #case_studies .cs_container .cs_1 .cs_fade-enter, #mainstage #case_studies .cs_container .cs_1 .cs_fade-leave-to, #mainstage #case_studies .cs_container .cs_2 .cs_fade-enter, #mainstage #case_studies .cs_container .cs_2 .cs_fade-leave-to {
+          opacity: 0;
+          -webkit-transform: translateY(20px);
+          -ms-transform: translateY(20px);
+          transform: translateY(20px); }
+        #mainstage #case_studies .cs_container .cs_1 .cs_fade-leave-to, #mainstage #case_studies .cs_container .cs_2 .cs_fade-leave-to {
+          -webkit-transform: translateY(-20px);
+          -ms-transform: translateY(-20px);
+          transform: translateY(-20px); }
+        #mainstage #case_studies .cs_container .cs_1 .cs_text_fade-enter-active, #mainstage #case_studies .cs_container .cs_2 .cs_text_fade-enter-active {
+          -webkit-transition: opacity .5s .3s;
+          -o-transition: opacity .5s .3s;
+          transition: opacity .5s .3s; }
+        #mainstage #case_studies .cs_container .cs_1 .cs_text_fade-leave-active, #mainstage #case_studies .cs_container .cs_2 .cs_text_fade-leave-active {
+          -webkit-transition: opacity .5s;
+          -o-transition: opacity .5s;
+          transition: opacity .5s; }
+        #mainstage #case_studies .cs_container .cs_1 .cs_text_fade-enter, #mainstage #case_studies .cs_container .cs_1 .cs_text_fade-leave-to, #mainstage #case_studies .cs_container .cs_2 .cs_text_fade-enter, #mainstage #case_studies .cs_container .cs_2 .cs_text_fade-leave-to {
+          opacity: 0; }
       #mainstage #case_studies .cs_container .cs_1 {
-        background-image: url(../img/cs_1.jpg); }
+        background-image: url(../img/cs_1.jpg);
+        background-position: center left; }
+        #mainstage #case_studies .cs_container .cs_1 video {
+          right: 0px; }
       #mainstage #case_studies .cs_container .cs_2 {
-        background-image: url(../img/cs_2.jpg); }
+        background-image: url(../img/cs_2.jpg);
+        background-position: center right; }
+        #mainstage #case_studies .cs_container .cs_2 video {
+          left: 0px; }
+      #mainstage #case_studies .cs_container.cs1 .cs_1 {
+        width: 100%;
+        -webkit-transition: width .5s;
+        -o-transition: width .5s;
+        transition: width .5s; }
+      #mainstage #case_studies .cs_container.cs1 .cs_2 {
+        width: 0;
+        -webkit-transition: width .5s;
+        -o-transition: width .5s;
+        transition: width .5s; }
+      #mainstage #case_studies .cs_container.cs1 .cs_copy {
+        display: block; }
+      #mainstage #case_studies .cs_container.cs2 .cs_2 {
+        width: 100%;
+        -webkit-transition: width .5s;
+        -o-transition: width .5s;
+        transition: width .5s; }
+      #mainstage #case_studies .cs_container.cs2 .cs_1 {
+        width: 0;
+        -webkit-transition: width .5s;
+        -o-transition: width .5s;
+        transition: width .5s; }
+      #mainstage #case_studies .cs_container.cs2 .cs_copy {
+        display: block; }
 
 /* ==========================================================================
    Helper classes

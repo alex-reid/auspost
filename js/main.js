@@ -95,7 +95,6 @@ var screensaver = new Vue({
 				this.arrows[i].s = Math.random() * .7 + .3;
 			}
 			ss_slide = setInterval(this.textFade, 3000);
-			menu.title = "";
 			menu.isOpen = false
 		},
 		textFade: function(){
@@ -184,18 +183,42 @@ var fast_facts = new Vue({
 	}
 })
 
+var vid1, vid2;
 var case_studies = new Vue({
 	el: '#case_studies',
 	data: {
 		open: false,
+		current: 'closed'
 	},
 	methods:{
 		init: function(){
 			this.destroy();
 			this.open = true;
+			this.current = 'closed';
+
+			vid1 = document.getElementById("cs_vid_1"); 
+			vid2 = document.getElementById("cs_vid_2"); 
+
+			this.pause();
 		},
 		destroy: function(){
+
+			if(vid1 || vid2){
+				this.pause();
+			};
 			this.open = false;
+			this.current = 'closed';
+		},
+		play: function(cs){
+
+			this.pause();
+
+			if(cs == "cs1") vid1.play();
+			if(cs == "cs2") vid2.play();
+		},
+		pause: function(){
+			vid1.pause()
+			vid2.pause()
 		}
 	}
 })
