@@ -83,8 +83,13 @@
       </ul>
     </section>
 
-    <section id="pain_points">
-      <div class="circle background">
+    <section id="pain_points" v-bind:style="{ 'perspective-origin' : stage.px+'% '+stage.py+'%' }">
+      <div  v-on:click="load_pp(index)" 
+            v-for="(pp_item, index) in pp_items" 
+            class="circle foreground" 
+            v-bind:style="{ 'transform' : 'translate3d(' + pp_item.x + 'px,' + pp_item.y + 'px, ' + pp_item.z + 'px)' }" 
+            v-bind:class="{ shown : pp_item.show }"
+      >
         <div class="inner_1">
         </div>
         <div class="inner_2">
@@ -92,12 +97,14 @@
         <div class="center">
         </div>
       </div>
-      <div class="circle foreground">
+      <div v-for="circle in circles" class="circle" v-bind:style="{ 'transform' : 'translate3d(' + circle.x + 'px,' + circle.y + 'px,' + circle.z + 'px)', 'z-index' : circle.z}">
         <div class="inner_1">
         </div>
         <div class="inner_2">
         </div>
         <div class="center">
+        </div>
+        <div class="overlay" v-bind:style="{ 'opacity' : -circle.z / 600 }">
         </div>
       </div>
     </section>

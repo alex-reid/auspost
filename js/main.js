@@ -59,7 +59,7 @@ var screensaver = new Vue({
 	el: '#screensaver',
 	data: {
 		open: false,
-		text: [
+		text: [ // Disbursement and collections made easy.
 			{id: 1, text:"Our solutions"},
 			{id: 2, text:"solve"},
 			{id: 3, text:"your biggest"},
@@ -183,15 +183,206 @@ var fast_facts = new Vue({
 	}
 })
 
+// empty var to hold timer
+var pp_tick;
+
 var pain_points = new Vue({
 	el: "#pain_points",
 	data: {
-		open: true
+		open: true,
+		circles: [
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'},
+			{x:0,y:0,z:0,t:0,type:'bg'}
+		],
+		timer: 0,
+		stage: {
+			w: 804,
+			h: 618,
+			px: 50,
+			py: 50,
+			dx: 50,
+			dy: 50
+		},
+		pp_show: false,
+		pp_items: [
+		{ 
+			id : 0,
+			show: false,
+			title: "Reach limitations",
+			text: "Difficulty in providing immediate financial relief in rural areas. Limited ability to identify consumer groups at speed and address rural unbanked collections.",
+			x : 24,
+			y : 36,
+			z : 0
+		},
+		{
+			id : 1,
+			show: false,
+			title: "Decentralised systems",
+			text: "Complex and inconsistent systems and data formats. Lack of consolidated consumer information and quality data makes assessing net position, preventing fraud and correctly issuing fines difficult.",
+			x : 210,
+			y : 240,
+			z : 4
+		},
+		{
+			id : 2,
+			show: false,
+			title: "Lack of control",
+			text: "Poor visibility and lack of control in liquidity across all government account balances. Lack of cashless payment solutions that enable spending control. No easy method to reverse payments that are unapproved.",
+			x : 456,
+			y : 120,
+			z : 8
+		},
+		{	
+			id : 3,
+			show: false,
+			title: "Manual processing",
+			text: "Settlement reconciliation is complex and manual processing results in errors. No method to confirm receipts of fees, fines and levies, and no way to update payment pricing to adhere to policies.",
+			x : 684,
+			y : 36,
+			z : 2
+		},
+		{
+			id : 4,
+			show: false,
+			title: "Cost inefficiencies",
+			text: "Cost of OTC (and cash management) services and leakage due to payment errors increase overall costs. Lack of differentiated pricing for intergovernmental payments.",
+			x : 72,
+			y : 420,
+			z : 5
+		},
+		{
+			id : 5,
+			show: false,
+			title: "Opportunity costs - Partnerships",
+			text: "Lack of access to value-adding third parties, and lack of integration and visibility of participants across the disbursement value chain.",
+			x : 288,
+			y : 492,
+			z : 10
+		},
+		{
+			id : 6,
+			show: false,
+			title: "Negative brand perception",
+			text: "Government affiliation with banks reduces customer trust and perceived efficiency of tax dollar use.",
+			x : 540,
+			y : 384,
+			z : 0
+		},
+		{
+			id : 7,
+			show: false,
+			title: "Poor customer experience",
+			text: "Outdated technology, inconsistant dispute processes, and changing consumer needs all contribute to negative customer experiences.",
+			x : 720,
+			y : 550,
+			z : 3
+		}
+		]
+	},
+	computed: {
+		styles_load: function(index){
+			console.log(this);
+			return { 'transform' : 'translate3d(' + this.pp_items[index].x + 'px,' + this.pp_items[index].y + 'px, ' + this.pp_items[index].z + 'px)' }
+		}
+	},
+	created: function(){
+
+			for (var i = this.circles.length -1; i >= 0; i--) {
+				this.random(this.circles[i]);
+			}
+
+			// start timer 10ms run "tick" function
+			pp_tick = setInterval(this.tick, 10);
+			this.$nextTick( this.touch )
 	},
 	methods: {
+		update: function(){
+			for (var i = this.circles.length -1; i >= 0; i--) {
+				this.move(this.circles[i]);
+			}
+		},
+		random: function(el){
+			el.x = round_rand(this.stage.w);
+			el.y = round_rand(this.stage.h);
+			el.z = -round_rand(300);
+			el.t = round_rand(100) + 100;
+		},
+		move: function(el){
 
+			var x = round_rand(20) - 10;
+			el.x += x
+			if(el.x > this.stage.w || el.x < 0) el.x -= x * 2;
+
+			var y = round_rand(20) - 10;
+			el.y += y;
+			if(el.y > this.stage.h || el.y < 0) el.y -= y * 2;
+
+			el.t = round_rand(200);
+		},
+		touch: function(){
+			// touch gestures
+			var pp = new Hammer(this.$el);
+			// console.log('te init');
+			pp.on('pan', function(ev) {
+				//console.log(ev.velocityX +" "+ ev.velocityY);
+				pain_points.stage.dx -= ev.velocityX;
+				pain_points.stage.dy -= ev.velocityY;
+			});
+			pp.on('panend', function(ev) {
+				pain_points.stage.dx = 50;
+				pain_points.stage.dy = 50;
+			})
+		},
+		tick: function(){
+			// smooth scroll to point
+
+			// increment timer and wrap around at 200
+			if(this.timer++ > 200) this.timer = 0;
+
+			// loop over circles and work out if a move is needed
+			this.circles.filter(function(pp,i) {
+				if (pp.t == this.timer) this.move(this.circles[i]);
+			}, this);
+		},
+		load_pp: function (index) {
+
+			this.pp_items.filter(function(pp) {
+				pp.show = false;
+			});
+
+			this.pp_items[index].show = true;
+
+			// this.pp_items[index].old_x = this.pp_items[index].x;
+			// this.pp_items[index].old_y = this.pp_items[index].y;
+			// this.pp_items[index].old_z = this.pp_items[index].z;
+
+			// this.pp_items[index].x = 270;
+			// this.pp_items[index].y = 300;
+			// this.pp_items[index].z = 100;
+		}
 	}
 })
+
+function round_rand(max){
+	return Math.round(Math.random() * max);
+}
 
 var vid1, vid2;
 var case_studies = new Vue({
