@@ -132,8 +132,8 @@ strong {
     transform: scale(1, 1);
     opacity: 0.8; }
   50% {
-    -webkit-transform: scale(0.95, 0.95);
-    transform: scale(0.95, 0.95);
+    -webkit-transform: scale(0.9, 0.9);
+    transform: scale(0.9, 0.9);
     opacity: 1; }
   100% {
     -webkit-transform: scale(1, 1);
@@ -146,8 +146,8 @@ strong {
     transform: scale(1, 1);
     opacity: 0.8; }
   50% {
-    -webkit-transform: scale(0.95, 0.95);
-    transform: scale(0.95, 0.95);
+    -webkit-transform: scale(0.9, 0.9);
+    transform: scale(0.9, 0.9);
     opacity: 1; }
   100% {
     -webkit-transform: scale(1, 1);
@@ -160,6 +160,16 @@ strong {
   height: 100vh;
   position: relative;
   background-color: #333; }
+  #mainstage .sbutton {
+    position: absolute;
+    z-index: 10000;
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1rem 4rem;
+    bottom: 40px;
+    right: 40px;
+    -webkit-box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.2); }
   #mainstage #navigation {
     height: 100%; }
     #mainstage #navigation .bar {
@@ -285,6 +295,8 @@ strong {
     background-color: #3FBFAB;
     overflow: hidden;
     z-index: 1000; }
+    #mainstage #screensaver .sbutton {
+      color: #3FBFAB; }
     #mainstage #screensaver.open {
       display: block;
       opacity: 1; }
@@ -338,11 +350,14 @@ strong {
     -o-transition: perspective-origin 2s linear;
     transition: perspective-origin 2s linear;
     transition: perspective-origin 2s linear, -webkit-perspective-origin 2s linear; }
+    #mainstage #pain_points .sbutton {
+      color: #7EB6D8; }
     #mainstage #pain_points.open {
       display: block;
       opacity: 1; }
     #mainstage #pain_points .switch_view {
       position: absolute;
+      bottom: 0px;
       font-weight: normal;
       font-size: 1.2rem;
       color: #ffffff;
@@ -386,27 +401,43 @@ strong {
       #mainstage #pain_points .pp_content div {
         padding: 2rem; }
       #mainstage #pain_points .pp_content h3, #mainstage #pain_points .pp_content p {
-        color: #ffffff;
-        font-weight: 100; }
+        color: #ffffff; }
       #mainstage #pain_points .pp_content p {
+        font-weight: 100;
         font-size: 1.6rem; }
     #mainstage #pain_points .circle {
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
-      background-color: #4A86A6;
+      width: 0px;
+      height: 0px;
       position: absolute;
-      -webkit-transition: width .2s linear, height .2s linear, -webkit-transform .2s linear;
-      transition: width .2s linear, height .2s linear, -webkit-transform .2s linear;
-      -o-transition: transform .2s linear, width .2s linear, height .2s linear;
-      transition: transform .2s linear, width .2s linear, height .2s linear;
-      transition: transform .2s linear, width .2s linear, height .2s linear, -webkit-transform .2s linear; }
+      -webkit-transition: -webkit-transform .5s ease-out;
+      transition: -webkit-transform .5s ease-out;
+      -o-transition: transform .5s ease-out;
+      transition: transform .5s ease-out;
+      transition: transform .5s ease-out, -webkit-transform .5s ease-out;
+      z-index: 0; }
       #mainstage #pain_points .circle.floating {
         -webkit-transition: -webkit-transform 2s linear;
         transition: -webkit-transform 2s linear;
         -o-transition: transform 2s linear;
         transition: transform 2s linear;
         transition: transform 2s linear, -webkit-transform 2s linear; }
+      #mainstage #pain_points .circle * {
+        -webkit-transition: background-color 1s;
+        -o-transition: background-color 1s;
+        transition: background-color 1s; }
+      #mainstage #pain_points .circle .circ_hold {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        position: absolute;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background-color: #4A86A6;
+        -webkit-transition: width .5s ease-out, height .5s ease-out, background-color .5s;
+        -o-transition: width .5s ease-out, height .5s ease-out, background-color .5s;
+        transition: width .5s ease-out, height .5s ease-out, background-color .5s; }
       #mainstage #pain_points .circle .inner_1 {
         width: 75%;
         height: 75%;
@@ -417,8 +448,8 @@ strong {
         background-color: #639DBF;
         -webkit-animation-name: pp_pulse_1;
         animation-name: pp_pulse_1;
-        -webkit-animation-duration: 3s;
-        animation-duration: 3s;
+        -webkit-animation-duration: 3.5s;
+        animation-duration: 3.5s;
         -webkit-animation-iteration-count: infinite;
         animation-iteration-count: infinite;
         -webkit-animation-timing-function: linear;
@@ -433,8 +464,8 @@ strong {
         top: 25%;
         -webkit-animation-name: pp_pulse_1;
         animation-name: pp_pulse_1;
-        -webkit-animation-duration: 2s;
-        animation-duration: 2s;
+        -webkit-animation-duration: 2.5s;
+        animation-duration: 2.5s;
         -webkit-animation-delay: -1s;
         animation-delay: -1s;
         -webkit-animation-iteration-count: infinite;
@@ -451,7 +482,7 @@ strong {
         top: 37.5%; }
       #mainstage #pain_points .circle .label {
         position: absolute;
-        left: 110%;
+        left: 120px;
         top: 50%;
         width: 230px;
         -webkit-transform: translateY(-50%);
@@ -470,17 +501,20 @@ strong {
         top: 0px;
         opacity: 0; }
       #mainstage #pain_points .circle.foreground {
-        width: 180px;
-        height: 180px;
+        width: 0px;
+        height: 0px;
         background-color: #817AE4;
-        z-index: 0 !important; }
+        z-index: 0; }
         #mainstage #pain_points .circle.foreground.shown {
-          -webkit-transform: translate(40px, 200px) !important;
-          -ms-transform: translate(40px, 200px) !important;
-          transform: translate(40px, 200px) !important;
-          width: 400px;
-          height: 400px;
+          -webkit-transform: translate(240px, 50vh) !important;
+          -ms-transform: translate(240px, 50vh) !important;
+          transform: translate(240px, 50vh) !important;
           z-index: 110 !important; }
+          #mainstage #pain_points .circle.foreground.shown .circ_hold {
+            width: 400px;
+            height: 400px; }
+        #mainstage #pain_points .circle.foreground .circ_hold {
+          background-color: #817AE4; }
         #mainstage #pain_points .circle.foreground .inner_1 {
           background-color: #B3AFEE; }
         #mainstage #pain_points .circle.foreground .inner_2 {
@@ -496,6 +530,8 @@ strong {
     display: none;
     background-color: #B3AFEE;
     overflow: hidden; }
+    #mainstage #fast_facts .sbutton {
+      color: #B3AFEE; }
     #mainstage #fast_facts.open {
       display: block; }
     #mainstage #fast_facts #ff_cards {

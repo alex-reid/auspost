@@ -1,14 +1,3 @@
-// assets manifest
-assets = [
-	"img/cs_1.jpg",
-	"img/cs_2.jpg",
-	"img/fast-facts.svg",
-	"img/ff_img.svg",
-	"img/pain-points.svg",
-	"img/case-studies.svg",
-	"img/ss_arrow.svg"
-];
-
 // init vars
 
 //var width = 1024;
@@ -36,6 +25,7 @@ var menu = new Vue({
   		case_studies.destroy(); 
   		fast_facts.init();
    		pain_points.open = false;
+   		pain_points.reset()
 //  		fast_facts.open = true;
   	},
   	load_pp: function(){
@@ -44,7 +34,7 @@ var menu = new Vue({
   		case_studies.destroy();
   		fast_facts.destroy();
   		pain_points.open = true;
-  	},
+ 	},
   	load_cs: function(){
   		this.isOpen = false;
   		this.title = "Case Studies"
@@ -52,6 +42,7 @@ var menu = new Vue({
   		fast_facts.destroy();
   		case_studies.init();  	
    		pain_points.open = false;
+   		pain_points.reset();
  	}
   }
 })
@@ -61,14 +52,11 @@ var ss_slide;
 var screensaver = new Vue({
 	el: '#screensaver',
 	data: {
-		open: false,
+		open: true,
 		text: [ // Disbursement and collections made easy.
-			{id: 1, text:"Our solutions"},
-			{id: 2, text:"solve"},
-			{id: 3, text:"your biggest"},
-			{id: 4, text:"pain points"},
-			{id: 5, text:"in disbursement"},
-			{id: 6, text:"and collection"}
+			{id: 1, text:"Disbursement"},
+			{id: 2, text:"and collections"},
+			{id: 3, text:"made easy."}
 		],
 		arrows: [
 			{x:0,y:0,d:0,s:1},
@@ -85,9 +73,13 @@ var screensaver = new Vue({
 		],
 		ss_current: 0
 	},
+	created: function(){
+		this.init();
+	},
 	methods: {
 		init: function(){
 			this.destroy;
+			//pain_points.reset();
   			//fast_facts.destroy();
 			this.open = true;
 			for(var i = 0; i < this.arrows.length; i++){
@@ -98,7 +90,7 @@ var screensaver = new Vue({
 				this.arrows[i].s = Math.random() * .7 + .3;
 			}
 			ss_slide = setInterval(this.textFade, 3000);
-			menu.isOpen = false
+			menu.isOpen = false;
 		},
 		textFade: function(){
 			var items = this.text.length;
@@ -111,6 +103,9 @@ var screensaver = new Vue({
 			clearInterval(ss_slide);
 			this.ss_current = 1;
 			this.open = false;
+		},
+		nextbtn : function() { 
+			menu.load_ff();
 		}
 	}
 })
@@ -122,12 +117,12 @@ var fast_facts = new Vue({
 	data: {
 		open: false,
 		cards: [
-			{ img: "img/ff_img.svg", depth: 1, text: "<strong>$35b</strong> In over the counter financial services transactions annually" },
-			{ img: "img/ff_img.svg", depth: 2, text: "Helping over <strong>750</strong> businesses and government agencies" },
-			{ img: "img/ff_img.svg", depth: 3, text: "<strong>30</strong> years of payment management experience" },
-			{ img: "img/ff_img.svg", depth: 4, text: "<strong>60%</strong> of Australian online transactions are powered through SecurePay" },
-			{ img: "img/ff_img.svg", depth: 5, text: "<strong>181M</strong> digital visits annually" },
-			{ img: "img/ff_img.svg", depth: 6, text: "More than <strong>3,500</strong> payment collection points across our network" }
+			{ img: "img/ff_img_3.svg", depth: 1, text: "<strong>$3b</strong> In over the counter financial services transactions annually" },
+			{ img: "img/ff_img_4.svg", depth: 2, text: "Helping over <strong>750</strong> businesses and government agencies" },
+			{ img: "img/ff_img_5.svg", depth: 3, text: "<strong>30</strong> years of payment management experience" },
+			{ img: "img/ff_img_6.svg", depth: 4, text: "<strong>60%</strong> of Australian online transactions are powered through SecurePay" },
+			{ img: "img/ff_img_1.svg", depth: 5, text: "<strong>181M</strong> digital visits annually" },
+			{ img: "img/ff_img_2.svg", depth: 6, text: "More than <strong>3,500</strong> payment collection points across our network" }
 		],
 		current: 1
 	},
@@ -171,6 +166,8 @@ var fast_facts = new Vue({
 			var mc = new Hammer(this.$el);
 			// console.log('te init');
 			mc.on("swipe", function(ev){
+				clearTimeout(ss_timeout);
+				timeout();
 				switch(ev.offsetDirection){
 					case 2:
 						// console.log('left');
@@ -182,6 +179,9 @@ var fast_facts = new Vue({
 					break;
 				}
 			})
+		},
+		nextbtn : function() { 
+			menu.load_pp();
 		}
 	}
 })
@@ -249,7 +249,7 @@ var pain_points = new Vue({
 				id : 2,
 				show: false,
 				title: "Lack of control",
-				text: "Poor visibility and lack of control in liquidity across all government account balances. Lack of cashless payment solutions that enable spending control. No easy method to reverse payments that are unapproved.",
+				text: "Poor visibility and lack of control across all government account balances. Lack of cashless payment solutions that enable spending control. No easy method to reverse payments that are unapproved.",
 				x : 456,
 				y : 120,
 				z : -80
@@ -285,7 +285,7 @@ var pain_points = new Vue({
 				id : 6,
 				show: false,
 				title: "Negative brand perception",
-				text: "Government affiliation with banks reduces customer trust and perceived efficiency of tax dollar use.",
+				text: "Public trust is earned and it’s important to ensure this trust is maintained and customers understand their taxes are being used effectively.",
 				x : 540,
 				y : 384,
 				z : 0
@@ -295,9 +295,9 @@ var pain_points = new Vue({
 				show: false,
 				title: "Poor customer experience",
 				text: "Outdated technology, inconsistant dispute processes, and changing consumer needs all contribute to negative customer experiences.",
-				x : 720,
-				y : 550,
-				z : -3
+				x : 750,
+				y : 520,
+				z : -30
 			}
 		]
 	},
@@ -326,7 +326,24 @@ var pain_points = new Vue({
 				this.pp_items[i].cz = this.pp_items[i].z;
 				this.pp_items[i].t = round_rand(200);
 				this.pp_items[i].f = true;
+				//this.pp_items[i].show = false;
 			}
+			//this.pp_show = false;
+			//this.pp_shown = 0;
+			//this.pp_overview = false;
+		},
+		reset: function(){
+			for (var i = this.pp_items.length -1; i >= 0; i--) {
+				this.pp_items[i].x = this.pp_items[i].cx;
+				this.pp_items[i].y = this.pp_items[i].cy;
+				this.pp_items[i].z = this.pp_items[i].cz;
+				this.pp_items[i].t = round_rand(200);
+				this.pp_items[i].f = true;
+				this.pp_items[i].show = false;
+			}
+			this.pp_show = false;
+			this.pp_shown = 0;
+			this.pp_overview = false;
 		},
 		update: function(){
 			for (var i = this.circles.length -1; i >= 0; i--) {
@@ -397,8 +414,9 @@ var pain_points = new Vue({
 			this.pp_overview = false;
 			pp_tick = setInterval(this.tick, 10);
 		},
+		// holding function for transition end feedback
 		call: function (i) {
-			console.log(i);
+			//console.log(i);
 			if( !this.pp_items[i].f && !this.pp_show) this.pp_items[i].f = true;
 		},
 		tick: function(){
@@ -446,6 +464,9 @@ var pain_points = new Vue({
 			});
 			this.pp_show = false;
 			//pp_tick = setInterval(this.tick, 10);
+		},
+		nextbtn : function() { 
+			menu.load_cs();
 		}
 	}
 })
@@ -505,7 +526,7 @@ function timeout(){
 	},time)
 }
 
-$(document).ready(function() {
+jQuery(document).ready(function($) {
 
 	// init timeout
 	//timeout();

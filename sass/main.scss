@@ -182,7 +182,7 @@ strong{
         opacity: 0.8;
     }
     50% {
-        transform: scale(0.95,0.95);
+        transform: scale(0.90,0.90);
         opacity: 1;
     }
     100% {
@@ -199,6 +199,16 @@ strong{
     //max-height: 1024px;
     position: relative;
     background-color: #333;
+    .sbutton{
+        position: absolute;
+        z-index: 10000;
+        background: #fff;
+        border-radius: 1rem;
+        padding: 1rem 4rem;
+        bottom: 40px;
+        right: 40px;
+        box-shadow: 10px 5px 20px rgba(0,0,0,0.2);
+    }
     #navigation{
         height: 100%;
         .bar{
@@ -336,6 +346,9 @@ strong{
         top: 0px;
         //display: none;
         background-color: #3FBFAB;
+        .sbutton{
+            color: #3FBFAB;
+        }
         overflow: hidden;
         z-index: 1000;
         &.open{
@@ -381,6 +394,9 @@ strong{
         top: 0px;
         display: none;
         background-color: #7EB6D8;
+        .sbutton{
+            color: #7EB6D8;
+        }
         overflow: hidden;
         perspective: 200px;
         perspective-origin: 50% 50%;
@@ -392,6 +408,7 @@ strong{
         }
         .switch_view{
             position: absolute;
+            bottom: 0px;
             font-weight: normal;
             font-size: 1.2rem;
             color: $white;
@@ -437,21 +454,33 @@ strong{
             }
             h3, p {
                 color: $white;
-                font-weight: 100;
             }
             p{
+                font-weight: 100;
                 font-size: 1.6rem;
             }
         }
         .circle{
-            width: 170px;
-            height: 170px;
-            border-radius: 50%;
-            background-color: #4A86A6;
+            width: 0px;
+            height: 0px;
             position: absolute;
-            transition: transform .2s linear, width .2s linear, height .2s linear;
+            transition: transform .5s ease-out;
+            z-index: 0;
             &.floating{
                 transition: transform 2s linear;
+            }
+            *{
+                transition: background-color 1s;
+            }
+            .circ_hold{
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+                position: absolute;
+                transform: translate(-50%,-50%);
+                border-radius: 50%;
+                background-color: #4A86A6;  
+                transition: width .5s ease-out, height .5s ease-out, background-color .5s;            
             }
             .inner_1{
                 width: 75%;
@@ -462,7 +491,7 @@ strong{
                 top: 12.5%;
                 background-color: #639DBF;
                 animation-name: pp_pulse_1;
-                animation-duration: 3s;
+                animation-duration: 3.5s;
                 animation-iteration-count: infinite;
                 animation-timing-function: linear;
                 
@@ -476,7 +505,7 @@ strong{
                 left: 25%;
                 top: 25%;                
                 animation-name: pp_pulse_1;
-                animation-duration: 2s;
+                animation-duration: 2.5s;
                 animation-delay: -1s;
                 animation-iteration-count: infinite;
                 animation-timing-function: linear;
@@ -493,7 +522,7 @@ strong{
             }
             .label{
                 position: absolute;
-                left: 110%;
+                left: 120px;
                 top: 50%;
                 width: 230px;
                 transform: translateY(-50%);
@@ -512,15 +541,20 @@ strong{
                 opacity: 0;
             }
             &.foreground{
-                width: 180px;
-                height: 180px;
+                width: 0px;
+                height: 0px;
                 background-color: #817AE4;
-                z-index: 0 !important;
+                z-index: 0;
                 &.shown{
-                    transform: translate(40px, 200px) !important;
-                    width: 400px;
-                    height: 400px;
+                    transform: translate(240px, 50vh) !important;
+                    .circ_hold{
+                        width: 400px;
+                        height: 400px;
+                    }
                     z-index: 110 !important;
+                }
+                .circ_hold{
+                    background-color: #817AE4;
                 }
                 .inner_1{
                     background-color: #B3AFEE;
@@ -544,6 +578,9 @@ strong{
         top: 0px;
         display: none;
         background-color: #B3AFEE;
+        .sbutton{
+            color: #B3AFEE;
+        }
         overflow: hidden;
         &.open{
             display: block;

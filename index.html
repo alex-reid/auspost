@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- <html class="no-js" lang="" manifest="auspost.appcache"> -->
 <html class="no-js" lang="">
 
 <head>
@@ -65,6 +66,7 @@
             </transition>
           </li>
         </ul>
+        <div class="sbutton" v-on:click="nextbtn">explore &raquo;</div>
       </section>
     </transition>
 
@@ -81,11 +83,12 @@
           </transition>
         </li>
       </ul>
+      <div class="sbutton" v-on:click="nextbtn">pain points &raquo;</div>
     </section>
 
     <section id="pain_points" v-bind:class="{ open: open }" v-bind:style="{ 'perspective-origin' : stage.px+'% '+stage.py+'%' }">
-      <span v-if="!pp_overview" v-on:click="overview()" class="switch_view">View all</span>
-      <span v-if="pp_overview" v-on:click="hide_overview()" class="switch_view">Go back</span>
+      <span v-if="!pp_overview" v-on:click="overview()" class="switch_view"><b>View as list</b></span>
+      <span v-if="pp_overview" v-on:click="hide_overview()" class="switch_view"><b>Go back</b></span>
       <div class="white_text">
         <h2></h2>
         <h3></h3>
@@ -94,18 +97,20 @@
         <div class="cover" v-on:click="unload_pp()" v-if="pp_show"></div>
       </transition>
       <div  
-        class="circle foreground" 
+        class="circle" 
         v-on:click="load_pp(index)" 
         v-for="(pp_item, index) in pp_items" 
-        v-bind:style="{ 'transform' : 'translate3d(' + pp_item.x + 'px,' + pp_item.y + 'px, ' + pp_item.z + 'px)' }" 
-        v-bind:class="{ shown : pp_item.show, floating : pp_item.f }"
+        v-bind:style="{ 'transform' : 'translate3d(' + (pp_item.x + 90) + 'px,' + (pp_item.y + 90) + 'px, ' + pp_item.z + 'px)' }" 
+        v-bind:class="{ foreground : pp_item.show, shown : pp_item.show, floating : pp_item.f }"
         v-on:transitionend="call(index)"
       >
-        <div class="inner_1">
-        </div>
-        <div class="inner_2">
-        </div>
-        <div class="center">
+        <div class="circ_hold">
+          <div class="inner_1">
+          </div>
+          <div class="inner_2">
+          </div>
+          <div class="center">
+          </div>
         </div>
         <div v-if="pp_overview && !pp_show" class="label">{{ pp_item.title }}</div>
       </div>
@@ -127,6 +132,7 @@
         <div class="overlay" v-bind:style="{ 'opacity' : -circle.z / 600 }">
         </div>
       </div> -->
+      <div class="sbutton" v-on:click="nextbtn">case studies &raquo;</div>
     </section>
 
     <section id="case_studies" v-bind:class="{ open: open }">
