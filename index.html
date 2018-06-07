@@ -84,6 +84,11 @@
     </section>
 
     <section id="pain_points" v-bind:style="{ 'perspective-origin' : stage.px+'% '+stage.py+'%' }">
+      <div class="white_text">
+        <h2></h2>
+        <h3></h3>
+      </div>
+      <div class="cover" v-on:click="unload_pp()" v-bind:class="{ shown : pp_show }"></div>
       <div  v-on:click="load_pp(index)" 
             v-for="(pp_item, index) in pp_items" 
             class="circle foreground" 
@@ -97,6 +102,14 @@
         <div class="center">
         </div>
       </div>
+      <transition name="ff_fade">
+        <div v-if="pp_show" v-on:click="unload_pp()" class="pp_content">
+          <div>
+            <h3>{{ pp_items[pp_shown].title }}</h3>
+            <p>{{ pp_items[pp_shown].text }}</p>
+          </div>
+        </div>
+      </transition>
       <div v-for="circle in circles" class="circle" v-bind:style="{ 'transform' : 'translate3d(' + circle.x + 'px,' + circle.y + 'px,' + circle.z + 'px)', 'z-index' : circle.z}">
         <div class="inner_1">
         </div>

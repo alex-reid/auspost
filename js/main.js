@@ -80,7 +80,7 @@ var screensaver = new Vue({
 			{x:0,y:0,d:0,s:1},
 			{x:0,y:0,d:0,s:1}
 		],
-		current: 0
+		ss_current: 0
 	},
 	methods: {
 		init: function(){
@@ -99,14 +99,14 @@ var screensaver = new Vue({
 		},
 		textFade: function(){
 			var items = this.text.length;
-			if(this.current++ >= items) this.current = 1;
+			if(this.ss_current++ >= items) this.current = 1;
 		},
 		arrows_start : function() {
 			
 		},
 		destroy : function(){
 			clearInterval(ss_slide);
-			this.current = 1;
+			this.ss_current = 1;
 			this.open = false;
 		}
 	}
@@ -221,6 +221,7 @@ var pain_points = new Vue({
 			dy: 50
 		},
 		pp_show: false,
+		pp_shown: 0,
 		pp_items: [
 		{ 
 			id : 0,
@@ -238,7 +239,7 @@ var pain_points = new Vue({
 			text: "Complex and inconsistent systems and data formats. Lack of consolidated consumer information and quality data makes assessing net position, preventing fraud and correctly issuing fines difficult.",
 			x : 210,
 			y : 240,
-			z : 4
+			z : -4
 		},
 		{
 			id : 2,
@@ -247,7 +248,7 @@ var pain_points = new Vue({
 			text: "Poor visibility and lack of control in liquidity across all government account balances. Lack of cashless payment solutions that enable spending control. No easy method to reverse payments that are unapproved.",
 			x : 456,
 			y : 120,
-			z : 8
+			z : -8
 		},
 		{	
 			id : 3,
@@ -256,7 +257,7 @@ var pain_points = new Vue({
 			text: "Settlement reconciliation is complex and manual processing results in errors. No method to confirm receipts of fees, fines and levies, and no way to update payment pricing to adhere to policies.",
 			x : 684,
 			y : 36,
-			z : 2
+			z : -2
 		},
 		{
 			id : 4,
@@ -265,7 +266,7 @@ var pain_points = new Vue({
 			text: "Cost of OTC (and cash management) services and leakage due to payment errors increase overall costs. Lack of differentiated pricing for intergovernmental payments.",
 			x : 72,
 			y : 420,
-			z : 5
+			z : -5
 		},
 		{
 			id : 5,
@@ -274,7 +275,7 @@ var pain_points = new Vue({
 			text: "Lack of access to value-adding third parties, and lack of integration and visibility of participants across the disbursement value chain.",
 			x : 288,
 			y : 492,
-			z : 10
+			z : -10
 		},
 		{
 			id : 6,
@@ -292,13 +293,13 @@ var pain_points = new Vue({
 			text: "Outdated technology, inconsistant dispute processes, and changing consumer needs all contribute to negative customer experiences.",
 			x : 720,
 			y : 550,
-			z : 3
+			z : -3
 		}
 		]
 	},
 	computed: {
 		styles_load: function(index){
-			console.log(this);
+			//console.log(this);
 			return { 'transform' : 'translate3d(' + this.pp_items[index].x + 'px,' + this.pp_items[index].y + 'px, ' + this.pp_items[index].z + 'px)' }
 		}
 	},
@@ -321,8 +322,11 @@ var pain_points = new Vue({
 		random: function(el){
 			el.x = round_rand(this.stage.w);
 			el.y = round_rand(this.stage.h);
-			el.z = -round_rand(300);
+			el.z = -round_rand(300) - 10;
 			el.t = round_rand(100) + 100;
+			el.mx = this.stage.w * ( -el.x / 300 + 1);
+			console.log(el.z+" "+el.mx);
+			el.my = this.stage.h * ( -el.y / 300 + 1);
 		},
 		move: function(el){
 
@@ -363,6 +367,9 @@ var pain_points = new Vue({
 		},
 		load_pp: function (index) {
 
+			this.pp_show = true;
+			this.pp_shown = index;
+
 			this.pp_items.filter(function(pp) {
 				pp.show = false;
 			});
@@ -376,6 +383,12 @@ var pain_points = new Vue({
 			// this.pp_items[index].x = 270;
 			// this.pp_items[index].y = 300;
 			// this.pp_items[index].z = 100;
+		},
+		unload_pp: function(){
+			this.pp_items.filter(function(pp) {
+				pp.show = false;
+			});
+			this.pp_show = false;
 		}
 	}
 })

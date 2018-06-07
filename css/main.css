@@ -337,6 +337,43 @@ strong {
     -o-transition: perspective-origin 2s linear;
     transition: perspective-origin 2s linear;
     transition: perspective-origin 2s linear, -webkit-perspective-origin 2s linear; }
+    #mainstage #pain_points .cover {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      background-color: #7EB6D8;
+      opacity: 0;
+      -webkit-transition: opacity .5s linear;
+      -o-transition: opacity .5s linear;
+      transition: opacity .5s linear;
+      z-index: -1000; }
+      #mainstage #pain_points .cover.shown {
+        z-index: 100;
+        opacity: 0.8; }
+    #mainstage #pain_points .pp_content {
+      position: absolute;
+      z-index: 101;
+      width: 50%;
+      height: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      right: 0px; }
+      #mainstage #pain_points .pp_content div {
+        padding: 2rem; }
+      #mainstage #pain_points .pp_content h3, #mainstage #pain_points .pp_content p {
+        color: #ffffff;
+        font-weight: 100; }
+      #mainstage #pain_points .pp_content p {
+        font-size: 1.6rem; }
     #mainstage #pain_points .circle {
       width: 170px;
       height: 170px;
@@ -402,20 +439,20 @@ strong {
       #mainstage #pain_points .circle.foreground {
         width: 180px;
         height: 180px;
-        background-color: #817AE4; }
+        background-color: #817AE4;
+        z-index: 0 !important; }
         #mainstage #pain_points .circle.foreground.shown {
-          background-color: #ff0;
-          -webkit-transition: width .5s linear, height .5s linear, -webkit-transform .5s linear;
-          transition: width .5s linear, height .5s linear, -webkit-transform .5s linear;
-          -o-transition: transform .5s linear, width .5s linear, height .5s linear;
-          transition: transform .5s linear, width .5s linear, height .5s linear;
-          transition: transform .5s linear, width .5s linear, height .5s linear, -webkit-transform .5s linear;
+          -webkit-transition: width .2s linear, height .2s linear, -webkit-transform .2s linear;
+          transition: width .2s linear, height .2s linear, -webkit-transform .2s linear;
+          -o-transition: transform .2s linear, width .2s linear, height .2s linear;
+          transition: transform .2s linear, width .2s linear, height .2s linear;
+          transition: transform .2s linear, width .2s linear, height .2s linear, -webkit-transform .2s linear;
           -webkit-transform: translate(40px, 200px) !important;
           -ms-transform: translate(40px, 200px) !important;
           transform: translate(40px, 200px) !important;
           width: 400px;
           height: 400px;
-          z-index: 100; }
+          z-index: 110 !important; }
         #mainstage #pain_points .circle.foreground .inner_1 {
           background-color: #B3AFEE; }
         #mainstage #pain_points .circle.foreground .inner_2 {
