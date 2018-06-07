@@ -83,13 +83,13 @@
       </ul>
     </section>
 
-    <section id="pain_points" v-bind:style="{ 'perspective-origin' : stage.px+'% '+stage.py+'%' }">
+    <section id="pain_points" v-bind:class="{ open: open }" v-bind:style="{ 'perspective-origin' : stage.px+'% '+stage.py+'%' }">
       <div class="white_text">
         <h2></h2>
         <h3></h3>
       </div>
-      <div class="cover" v-on:click="unload_pp()" v-bind:class="{ shown : pp_show }"></div>
-      <div  v-on:click="load_pp(index)" 
+      <div class="cover" v-on:touchstart="unload_pp()" v-bind:class="{ shown : pp_show }"></div>
+      <div  v-on:touchstart="load_pp(index)" 
             v-for="(pp_item, index) in pp_items" 
             class="circle foreground" 
             v-bind:style="{ 'transform' : 'translate3d(' + pp_item.x + 'px,' + pp_item.y + 'px, ' + pp_item.z + 'px)' }" 
@@ -103,14 +103,14 @@
         </div>
       </div>
       <transition name="ff_fade">
-        <div v-if="pp_show" v-on:click="unload_pp()" class="pp_content">
+        <div v-if="pp_show" v-on:touchstart="unload_pp()" class="pp_content">
           <div>
             <h3>{{ pp_items[pp_shown].title }}</h3>
             <p>{{ pp_items[pp_shown].text }}</p>
           </div>
         </div>
       </transition>
-      <div v-for="circle in circles" class="circle" v-bind:style="{ 'transform' : 'translate3d(' + circle.x + 'px,' + circle.y + 'px,' + circle.z + 'px)', 'z-index' : circle.z}">
+<!--       <div v-for="circle in circles" class="circle" v-bind:style="{ 'transform' : 'translate3d(' + circle.x + 'px,' + circle.y + 'px,' + circle.z + 'px)', 'z-index' : circle.z}">
         <div class="inner_1">
         </div>
         <div class="inner_2">
@@ -119,7 +119,7 @@
         </div>
         <div class="overlay" v-bind:style="{ 'opacity' : -circle.z / 600 }">
         </div>
-      </div>
+      </div> -->
     </section>
 
     <section id="case_studies" v-bind:class="{ open: open }">

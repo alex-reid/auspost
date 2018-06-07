@@ -35,6 +35,7 @@ var menu = new Vue({
   		screensaver.destroy();
   		case_studies.destroy(); 
   		fast_facts.init();
+   		pain_points.open = false;
 //  		fast_facts.open = true;
   	},
   	load_pp: function(){
@@ -42,6 +43,7 @@ var menu = new Vue({
   		this.title = "Pain Points"
   		case_studies.destroy();
   		fast_facts.destroy();
+  		pain_points.open = true;
   	},
   	load_cs: function(){
   		this.isOpen = false;
@@ -49,7 +51,8 @@ var menu = new Vue({
   		screensaver.destroy();
   		fast_facts.destroy();
   		case_studies.init();  	
-  	}
+   		pain_points.open = false;
+ 	}
   }
 })
 
@@ -99,7 +102,7 @@ var screensaver = new Vue({
 		},
 		textFade: function(){
 			var items = this.text.length;
-			if(this.ss_current++ >= items) this.current = 1;
+			if(this.ss_current++ >= items) this.ss_current = 1;
 		},
 		arrows_start : function() {
 			
@@ -239,7 +242,7 @@ var pain_points = new Vue({
 			text: "Complex and inconsistent systems and data formats. Lack of consolidated consumer information and quality data makes assessing net position, preventing fraud and correctly issuing fines difficult.",
 			x : 210,
 			y : 240,
-			z : -4
+			z : -40
 		},
 		{
 			id : 2,
@@ -248,7 +251,7 @@ var pain_points = new Vue({
 			text: "Poor visibility and lack of control in liquidity across all government account balances. Lack of cashless payment solutions that enable spending control. No easy method to reverse payments that are unapproved.",
 			x : 456,
 			y : 120,
-			z : -8
+			z : -80
 		},
 		{	
 			id : 3,
@@ -257,7 +260,7 @@ var pain_points = new Vue({
 			text: "Settlement reconciliation is complex and manual processing results in errors. No method to confirm receipts of fees, fines and levies, and no way to update payment pricing to adhere to policies.",
 			x : 684,
 			y : 36,
-			z : -2
+			z : -20
 		},
 		{
 			id : 4,
@@ -266,7 +269,7 @@ var pain_points = new Vue({
 			text: "Cost of OTC (and cash management) services and leakage due to payment errors increase overall costs. Lack of differentiated pricing for intergovernmental payments.",
 			x : 72,
 			y : 420,
-			z : -5
+			z : -50
 		},
 		{
 			id : 5,
@@ -275,7 +278,7 @@ var pain_points = new Vue({
 			text: "Lack of access to value-adding third parties, and lack of integration and visibility of participants across the disbursement value chain.",
 			x : 288,
 			y : 492,
-			z : -10
+			z : -100
 		},
 		{
 			id : 6,
@@ -308,12 +311,20 @@ var pain_points = new Vue({
 			for (var i = this.circles.length -1; i >= 0; i--) {
 				this.random(this.circles[i]);
 			}
+			this.init();
 
 			// start timer 10ms run "tick" function
 			pp_tick = setInterval(this.tick, 10);
-			this.$nextTick( this.touch )
+			//this.$nextTick( this.touch )
 	},
 	methods: {
+		init: function(){
+			for (var i = this.pp_items.length -1; i >= 0; i--) {
+				this.pp_items[i].cx = this.pp_items[i].x;
+				this.pp_items[i].cy = this.pp_items[i].y;
+				this.pp_items[i].t = round_rand(200);
+			}
+		},
 		update: function(){
 			for (var i = this.circles.length -1; i >= 0; i--) {
 				this.move(this.circles[i]);
@@ -324,9 +335,16 @@ var pain_points = new Vue({
 			el.y = round_rand(this.stage.h);
 			el.z = -round_rand(300) - 10;
 			el.t = round_rand(100) + 100;
-			el.mx = this.stage.w * ( -el.x / 300 + 1);
-			console.log(el.z+" "+el.mx);
-			el.my = this.stage.h * ( -el.y / 300 + 1);
+			// el.mx = this.stage.w * ( -el.x / 300 + 1);
+			// console.log(el.z+" "+el.mx);
+			// el.my = this.stage.h * ( -el.y / 300 + 1);
+		},
+		move_fg: function(el){
+
+			el.x = el.cx + (round_rand(40) - 20);
+			el.y = el.cy + (round_rand(40) - 20);
+
+			el.t = round_rand(200);
 		},
 		move: function(el){
 
@@ -361,9 +379,15 @@ var pain_points = new Vue({
 			if(this.timer++ > 200) this.timer = 0;
 
 			// loop over circles and work out if a move is needed
-			this.circles.filter(function(pp,i) {
-				if (pp.t == this.timer) this.move(this.circles[i]);
+
+			// this.circles.filter(function(pp,i) {
+			// 	if (pp.t == this.timer) this.move(this.circles[i]);
+			// }, this);
+
+			this.pp_items.filter(function(pp,i) {
+				if (pp.t == this.timer) this.move_fg(this.pp_items[i]);
 			}, this);
+
 		},
 		load_pp: function (index) {
 

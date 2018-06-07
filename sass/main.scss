@@ -379,12 +379,17 @@ strong{
         position: absolute;
         left: $menu-width;
         top: 0px;
-        //display: none;
+        display: none;
         background-color: #7EB6D8;
         overflow: hidden;
         perspective: 200px;
         perspective-origin: 50% 50%;
         transition: perspective-origin 2s linear;
+        &.open{
+            display: block;
+            opacity: 1;
+
+        }
         .cover{
             position: absolute;
             width: 100%;
@@ -426,7 +431,7 @@ strong{
             border-radius: 50%;
             background-color: #4A86A6;
             position: absolute;
-            transition: transform 2s linear, width 2s, height 2s;
+            transition: transform .2s linear, width .2s linear, height .2s linear;
             .inner_1{
                 width: 75%;
                 height: 75%;

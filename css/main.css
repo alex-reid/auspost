@@ -326,6 +326,7 @@ strong {
     position: absolute;
     left: 70px;
     top: 0px;
+    display: none;
     background-color: #7EB6D8;
     overflow: hidden;
     -webkit-perspective: 200px;
@@ -337,6 +338,9 @@ strong {
     -o-transition: perspective-origin 2s linear;
     transition: perspective-origin 2s linear;
     transition: perspective-origin 2s linear, -webkit-perspective-origin 2s linear; }
+    #mainstage #pain_points.open {
+      display: block;
+      opacity: 1; }
     #mainstage #pain_points .cover {
       position: absolute;
       width: 100%;
@@ -380,11 +384,11 @@ strong {
       border-radius: 50%;
       background-color: #4A86A6;
       position: absolute;
-      -webkit-transition: width 2s, height 2s, -webkit-transform 2s linear;
-      transition: width 2s, height 2s, -webkit-transform 2s linear;
-      -o-transition: transform 2s linear, width 2s, height 2s;
-      transition: transform 2s linear, width 2s, height 2s;
-      transition: transform 2s linear, width 2s, height 2s, -webkit-transform 2s linear; }
+      -webkit-transition: width .2s linear, height .2s linear, -webkit-transform .2s linear;
+      transition: width .2s linear, height .2s linear, -webkit-transform .2s linear;
+      -o-transition: transform .2s linear, width .2s linear, height .2s linear;
+      transition: transform .2s linear, width .2s linear, height .2s linear;
+      transition: transform .2s linear, width .2s linear, height .2s linear, -webkit-transform .2s linear; }
       #mainstage #pain_points .circle .inner_1 {
         width: 75%;
         height: 75%;
