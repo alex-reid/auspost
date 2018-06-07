@@ -390,6 +390,13 @@ strong{
             opacity: 1;
 
         }
+        .switch_view{
+            position: absolute;
+            font-weight: normal;
+            font-size: 1.2rem;
+            color: $white;
+            padding: 10px;
+        }
         .cover{
             position: absolute;
             width: 100%;
@@ -397,13 +404,24 @@ strong{
             top: 0px;
             left: 0px;
             background-color: #7EB6D8;
-            opacity: 0;
-            transition: opacity .5s linear;
-            z-index: -1000;
+            opacity: 0.8;
+            z-index: 100;
+            //z-index: -1000;
             &.shown{
                 z-index: 100;
                 opacity: 0.8;
+                transition: opacity .5s linear;
             }
+        }
+        .pp_fade-enter-active, .pp_fade-leave-active {
+          transition: opacity .5s;
+        }
+        .pp_fade-enter, .pp_fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+          opacity: 0;
+          //transform: translateX(-20px);
+        }
+        .pp_fade-leave-to{
+           // transform: translateX(20px);
         }
         .pp_content{
             position: absolute;
@@ -432,6 +450,9 @@ strong{
             background-color: #4A86A6;
             position: absolute;
             transition: transform .2s linear, width .2s linear, height .2s linear;
+            &.floating{
+                transition: transform 2s linear;
+            }
             .inner_1{
                 width: 75%;
                 height: 75%;
@@ -470,6 +491,16 @@ strong{
                 left: 37.5%;
                 top: 37.5%;
             }
+            .label{
+                position: absolute;
+                left: 110%;
+                top: 50%;
+                width: 230px;
+                transform: translateY(-50%);
+                color: $white;
+                font-weight: bold;
+                font-size: 1.5rem;
+            }
             .overlay{
                 width: 100%;
                 height: 100%;
@@ -486,7 +517,6 @@ strong{
                 background-color: #817AE4;
                 z-index: 0 !important;
                 &.shown{
-                    transition: transform .2s linear, width .2s linear, height .2s linear;
                     transform: translate(40px, 200px) !important;
                     width: 400px;
                     height: 400px;

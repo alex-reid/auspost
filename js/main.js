@@ -225,79 +225,80 @@ var pain_points = new Vue({
 		},
 		pp_show: false,
 		pp_shown: 0,
+		pp_overview: false,
 		pp_items: [
-		{ 
-			id : 0,
-			show: false,
-			title: "Reach limitations",
-			text: "Difficulty in providing immediate financial relief in rural areas. Limited ability to identify consumer groups at speed and address rural unbanked collections.",
-			x : 24,
-			y : 36,
-			z : 0
-		},
-		{
-			id : 1,
-			show: false,
-			title: "Decentralised systems",
-			text: "Complex and inconsistent systems and data formats. Lack of consolidated consumer information and quality data makes assessing net position, preventing fraud and correctly issuing fines difficult.",
-			x : 210,
-			y : 240,
-			z : -40
-		},
-		{
-			id : 2,
-			show: false,
-			title: "Lack of control",
-			text: "Poor visibility and lack of control in liquidity across all government account balances. Lack of cashless payment solutions that enable spending control. No easy method to reverse payments that are unapproved.",
-			x : 456,
-			y : 120,
-			z : -80
-		},
-		{	
-			id : 3,
-			show: false,
-			title: "Manual processing",
-			text: "Settlement reconciliation is complex and manual processing results in errors. No method to confirm receipts of fees, fines and levies, and no way to update payment pricing to adhere to policies.",
-			x : 684,
-			y : 36,
-			z : -20
-		},
-		{
-			id : 4,
-			show: false,
-			title: "Cost inefficiencies",
-			text: "Cost of OTC (and cash management) services and leakage due to payment errors increase overall costs. Lack of differentiated pricing for intergovernmental payments.",
-			x : 72,
-			y : 420,
-			z : -50
-		},
-		{
-			id : 5,
-			show: false,
-			title: "Opportunity costs - Partnerships",
-			text: "Lack of access to value-adding third parties, and lack of integration and visibility of participants across the disbursement value chain.",
-			x : 288,
-			y : 492,
-			z : -100
-		},
-		{
-			id : 6,
-			show: false,
-			title: "Negative brand perception",
-			text: "Government affiliation with banks reduces customer trust and perceived efficiency of tax dollar use.",
-			x : 540,
-			y : 384,
-			z : 0
-		},
-		{
-			id : 7,
-			show: false,
-			title: "Poor customer experience",
-			text: "Outdated technology, inconsistant dispute processes, and changing consumer needs all contribute to negative customer experiences.",
-			x : 720,
-			y : 550,
-			z : -3
-		}
+			{ 
+				id : 0,
+				show: false,
+				title: "Reach limitations",
+				text: "Difficulty in providing immediate financial relief in rural areas. Limited ability to identify consumer groups at speed and address rural unbanked collections.",
+				x : 24,
+				y : 36,
+				z : 0
+			},
+			{
+				id : 1,
+				show: false,
+				title: "Decentralised systems",
+				text: "Complex and inconsistent systems and data formats. Lack of consolidated consumer information and quality data makes assessing net position, preventing fraud and correctly issuing fines difficult.",
+				x : 210,
+				y : 240,
+				z : -40
+			},
+			{
+				id : 2,
+				show: false,
+				title: "Lack of control",
+				text: "Poor visibility and lack of control in liquidity across all government account balances. Lack of cashless payment solutions that enable spending control. No easy method to reverse payments that are unapproved.",
+				x : 456,
+				y : 120,
+				z : -80
+			},
+			{	
+				id : 3,
+				show: false,
+				title: "Manual processing",
+				text: "Settlement reconciliation is complex and manual processing results in errors. No method to confirm receipts of fees, fines and levies, and no way to update payment pricing to adhere to policies.",
+				x : 684,
+				y : 36,
+				z : -20
+			},
+			{
+				id : 4,
+				show: false,
+				title: "Cost inefficiencies",
+				text: "Cost of OTC (and cash management) services and leakage due to payment errors increase overall costs. Lack of differentiated pricing for intergovernmental payments.",
+				x : 72,
+				y : 420,
+				z : -50
+			},
+			{
+				id : 5,
+				show: false,
+				title: "Opportunity costs - Partnerships",
+				text: "Lack of access to value-adding third parties, and lack of integration and visibility of participants across the disbursement value chain.",
+				x : 288,
+				y : 492,
+				z : -100
+			},
+			{
+				id : 6,
+				show: false,
+				title: "Negative brand perception",
+				text: "Government affiliation with banks reduces customer trust and perceived efficiency of tax dollar use.",
+				x : 540,
+				y : 384,
+				z : 0
+			},
+			{
+				id : 7,
+				show: false,
+				title: "Poor customer experience",
+				text: "Outdated technology, inconsistant dispute processes, and changing consumer needs all contribute to negative customer experiences.",
+				x : 720,
+				y : 550,
+				z : -3
+			}
 		]
 	},
 	computed: {
@@ -322,7 +323,9 @@ var pain_points = new Vue({
 			for (var i = this.pp_items.length -1; i >= 0; i--) {
 				this.pp_items[i].cx = this.pp_items[i].x;
 				this.pp_items[i].cy = this.pp_items[i].y;
+				this.pp_items[i].cz = this.pp_items[i].z;
 				this.pp_items[i].t = round_rand(200);
+				this.pp_items[i].f = true;
 			}
 		},
 		update: function(){
@@ -372,6 +375,32 @@ var pain_points = new Vue({
 				pain_points.stage.dy = 50;
 			})
 		},
+		overview: function(){
+			clearInterval(pp_tick);
+			for (var i = this.pp_items.length -1; i >= 0; i--) {
+				this.pp_items[i].x = (i < 4)? -30 : this.stage.w / 1.6;
+				this.pp_items[i].y = (i < 4)? i * 200 -30 : (i-4) * 200 -30;
+				this.pp_items[i].z = -30;
+			}
+			this.pp_overview = true;
+			this.pp_items.filter(function(pp,i) {
+				pp.f = false;
+			}, this);
+		},
+		hide_overview: function(){
+
+			for (var i = this.pp_items.length -1; i >= 0; i--) {
+				this.pp_items[i].x = this.pp_items[i].cx;
+				this.pp_items[i].y = this.pp_items[i].cy;
+				this.pp_items[i].z = this.pp_items[i].cz;
+			}
+			this.pp_overview = false;
+			pp_tick = setInterval(this.tick, 10);
+		},
+		call: function (i) {
+			console.log(i);
+			if( !this.pp_items[i].f && !this.pp_show) this.pp_items[i].f = true;
+		},
 		tick: function(){
 			// smooth scroll to point
 
@@ -385,7 +414,7 @@ var pain_points = new Vue({
 			// }, this);
 
 			this.pp_items.filter(function(pp,i) {
-				if (pp.t == this.timer) this.move_fg(this.pp_items[i]);
+				if (pp.t == this.timer && pp.f) this.move_fg(this.pp_items[i]);
 			}, this);
 
 		},
@@ -399,6 +428,9 @@ var pain_points = new Vue({
 			});
 
 			this.pp_items[index].show = true;
+			this.pp_items[index].f = false;
+
+			//clearInterval(pp_tick);
 
 			// this.pp_items[index].old_x = this.pp_items[index].x;
 			// this.pp_items[index].old_y = this.pp_items[index].y;
@@ -413,6 +445,7 @@ var pain_points = new Vue({
 				pp.show = false;
 			});
 			this.pp_show = false;
+			//pp_tick = setInterval(this.tick, 10);
 		}
 	}
 })

@@ -61,7 +61,7 @@
         <ul class="ss_text">
           <li class="centerHV" v-for="item in text">
             <transition name="ss_fade">
-              <h2 v-if="item.id == current">{{ item.text }}</h2>
+              <h2 v-if="item.id == ss_current">{{ item.text }}</h2>
             </transition>
           </li>
         </ul>
@@ -84,16 +84,22 @@
     </section>
 
     <section id="pain_points" v-bind:class="{ open: open }" v-bind:style="{ 'perspective-origin' : stage.px+'% '+stage.py+'%' }">
+      <span v-if="!pp_overview" v-on:click="overview()" class="switch_view">View all</span>
+      <span v-if="pp_overview" v-on:click="hide_overview()" class="switch_view">Go back</span>
       <div class="white_text">
         <h2></h2>
         <h3></h3>
       </div>
-      <div class="cover" v-on:touchstart="unload_pp()" v-bind:class="{ shown : pp_show }"></div>
-      <div  v-on:touchstart="load_pp(index)" 
-            v-for="(pp_item, index) in pp_items" 
-            class="circle foreground" 
-            v-bind:style="{ 'transform' : 'translate3d(' + pp_item.x + 'px,' + pp_item.y + 'px, ' + pp_item.z + 'px)' }" 
-            v-bind:class="{ shown : pp_item.show }"
+      <transition name="pp_fade">
+        <div class="cover" v-on:click="unload_pp()" v-if="pp_show"></div>
+      </transition>
+      <div  
+        class="circle foreground" 
+        v-on:click="load_pp(index)" 
+        v-for="(pp_item, index) in pp_items" 
+        v-bind:style="{ 'transform' : 'translate3d(' + pp_item.x + 'px,' + pp_item.y + 'px, ' + pp_item.z + 'px)' }" 
+        v-bind:class="{ shown : pp_item.show, floating : pp_item.f }"
+        v-on:transitionend="call(index)"
       >
         <div class="inner_1">
         </div>
@@ -101,9 +107,10 @@
         </div>
         <div class="center">
         </div>
+        <div v-if="pp_overview && !pp_show" class="label">{{ pp_item.title }}</div>
       </div>
-      <transition name="ff_fade">
-        <div v-if="pp_show" v-on:touchstart="unload_pp()" class="pp_content">
+      <transition name="pp_fade">
+        <div v-if="pp_show" v-on:click="unload_pp()" class="pp_content">
           <div>
             <h3>{{ pp_items[pp_shown].title }}</h3>
             <p>{{ pp_items[pp_shown].text }}</p>
