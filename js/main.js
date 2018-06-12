@@ -396,9 +396,9 @@ var pain_points = new Vue({
 		overview: function(){
 			clearInterval(pp_tick);
 			for (var i = this.pp_items.length -1; i >= 0; i--) {
-				this.pp_items[i].x = (i < 4)? -30 : this.stage.w / 1.6;
+				this.pp_items[i].x = (i < 4)? -60 : this.stage.w / 1.8;
 				this.pp_items[i].y = (i < 4)? i * 200 -30 : (i-4) * 200 -30;
-				this.pp_items[i].z = -30;
+				this.pp_items[i].z = -60;
 			}
 			this.pp_overview = true;
 			this.pp_items.filter(function(pp,i) {

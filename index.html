@@ -88,6 +88,7 @@
     </section>
 
     <section id="pain_points" v-bind:class="{ open: open }" v-bind:style="{ 'perspective-origin' : stage.px+'% '+stage.py+'%' }">
+      <h2 class="pp_heading">Typical government pain points</h2>
       <span v-if="!pp_overview" v-on:click="overview()" class="switch_view"><b>View as list</b></span>
       <span v-if="pp_overview" v-on:click="hide_overview()" class="switch_view"><b>Go back</b></span>
       <div class="white_text">

@@ -352,6 +352,13 @@ strong {
     -o-transition: perspective-origin 2s linear;
     transition: perspective-origin 2s linear;
     transition: perspective-origin 2s linear, -webkit-perspective-origin 2s linear; }
+    #mainstage #pain_points h2.pp_heading {
+      font-size: 2rem;
+      color: #ffffff;
+      text-align: center;
+      position: absolute;
+      top: 0px;
+      width: 100%; }
     #mainstage #pain_points .sbutton {
       color: #7EB6D8; }
     #mainstage #pain_points.open {
