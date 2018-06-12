@@ -1,6 +1,7 @@
 <!doctype html>
 <!-- <html class="no-js" lang="" manifest="auspost.appcache"> -->
-<html class="no-js" lang="">
+
+ <html class="no-js" lang="">
 
 <head>
   <meta charset="utf-8">
@@ -62,7 +63,7 @@
         <ul class="ss_text">
           <li class="centerHV" v-for="item in text">
             <transition name="ss_fade">
-              <h2 v-if="item.id == ss_current">{{ item.text }}</h2>
+              <h2 v-if="item.id == ss_current" v-html="item.text"></h2>
             </transition>
           </li>
         </ul>
@@ -83,7 +84,7 @@
           </transition>
         </li>
       </ul>
-      <div class="sbutton" v-on:click="nextbtn">pain points &raquo;</div>
+      <div class="sbutton" v-on:click="nextbtn">case studies &raquo;</div>
     </section>
 
     <section id="pain_points" v-bind:class="{ open: open }" v-bind:style="{ 'perspective-origin' : stage.px+'% '+stage.py+'%' }">
@@ -132,7 +133,7 @@
         <div class="overlay" v-bind:style="{ 'opacity' : -circle.z / 600 }">
         </div>
       </div> -->
-      <div class="sbutton" v-on:click="nextbtn">case studies &raquo;</div>
+      <div class="sbutton" v-on:click="nextbtn">fast facts &raquo;</div>
     </section>
 
     <section id="case_studies" v-bind:class="{ open: open }">
@@ -148,6 +149,7 @@
             <span v-if="current == 'closed'" class="centerHV">
               <h3>Case Study</h3>
               <h2>Cash Disbursement</h2>
+              <p>Emergency relief</p>
             </span>
           </transition>
           <transition name="cs_fade">
@@ -176,21 +178,19 @@
           <transition name="cs_text_fade">
             <span v-if="current == 'closed'" class="centerHV">
               <h3>Case Study</h3>
-              <h2>Bill Management</h2>
+              <h2>Bill Payments</h2>
+              <p>Pay on-the-go when you choose</p>
             </span>
           </transition>
           <transition name="cs_fade">
             <div v-if="current == 'cs2'" class="cs_copy">
               <h3 v-on:click.stop="current = 'closed'; play(false)">< Back to Case Studies</h3>
-              <h2>Cash Disbursement</h2>
+              <h2>Bill Payments</h2>
               <p>
                 Matt, a stay-at-home dad, dreaded the arrival of bills in the mail. He always intended on paying them quickly but there was never a convenient time, place or method. 
               </p>
               <p>
                 Things changed when he heard about the AusPost app he already used for tracking parcels. Matt has always trusted Australia Post to deliver his bills, so trusting them to pay bills too seemed like a no-brainer. Matt now receives most of his bills directly through the app, allowing him to pay them whenever he wants. 
-              </p>
-              <p>
-                This simple, convenient solution helped Matt become more confident in managing the
               </p>
             </div>
           </transition>

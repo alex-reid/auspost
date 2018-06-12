@@ -303,9 +303,11 @@ strong {
     #mainstage #screensaver .ss_text li {
       list-style: none;
       font-weight: bold;
-      font-size: 30px;
+      font-size: 3rem;
       color: #ffffff;
-      opacity: 1; }
+      opacity: 1;
+      width: 100%;
+      text-align: center; }
     #mainstage #screensaver .ss_fade-enter-active, #mainstage #screensaver .ss_fade-leave-active {
       -webkit-transition: opacity .5s, -webkit-transform .5s;
       transition: opacity .5s, -webkit-transform .5s;
@@ -648,7 +650,7 @@ strong {
     #mainstage #case_studies .cs_container {
       position: relative;
       height: 100%; }
-      #mainstage #case_studies .cs_container h2, #mainstage #case_studies .cs_container h3 {
+      #mainstage #case_studies .cs_container h2, #mainstage #case_studies .cs_container h3, #mainstage #case_studies .cs_container p {
         color: #ffffff;
         text-shadow: 0px 0px 25px rgba(0, 0, 0, 0.8);
         text-align: center;
@@ -676,7 +678,7 @@ strong {
         #mainstage #case_studies .cs_container .cs_1 .cs_copy, #mainstage #case_studies .cs_container .cs_2 .cs_copy {
           position: absolute;
           width: calc(50vw - 4rem);
-          height: calc(100vh - 8rem);
+          height: auto;
           border-radius: 1rem;
           background-color: #ffffff;
           -webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
@@ -690,7 +692,7 @@ strong {
           -webkit-transform: translateY(0);
           -ms-transform: translateY(0);
           transform: translateY(0); }
-          #mainstage #case_studies .cs_container .cs_1 .cs_copy h2, #mainstage #case_studies .cs_container .cs_1 .cs_copy h3, #mainstage #case_studies .cs_container .cs_2 .cs_copy h2, #mainstage #case_studies .cs_container .cs_2 .cs_copy h3 {
+          #mainstage #case_studies .cs_container .cs_1 .cs_copy h2, #mainstage #case_studies .cs_container .cs_1 .cs_copy h3, #mainstage #case_studies .cs_container .cs_1 .cs_copy p, #mainstage #case_studies .cs_container .cs_2 .cs_copy h2, #mainstage #case_studies .cs_container .cs_2 .cs_copy h3, #mainstage #case_studies .cs_container .cs_2 .cs_copy p {
             color: #000000;
             text-shadow: none;
             text-align: left;
@@ -734,12 +736,12 @@ strong {
         #mainstage #case_studies .cs_container .cs_1 .cs_text_fade-enter, #mainstage #case_studies .cs_container .cs_1 .cs_text_fade-leave-to, #mainstage #case_studies .cs_container .cs_2 .cs_text_fade-enter, #mainstage #case_studies .cs_container .cs_2 .cs_text_fade-leave-to {
           opacity: 0; }
       #mainstage #case_studies .cs_container .cs_1 {
-        background-image: url(../img/cs_1.jpg);
+        background-image: url(../img/cs_2.jpg);
         background-position: center left; }
         #mainstage #case_studies .cs_container .cs_1 video {
           right: 0px; }
       #mainstage #case_studies .cs_container .cs_2 {
-        background-image: url(../img/cs_2.jpg);
+        background-image: url(../img/cs_1.jpg);
         background-position: center right; }
         #mainstage #case_studies .cs_container .cs_2 video {
           left: 0px; }

@@ -54,9 +54,10 @@ var screensaver = new Vue({
 	data: {
 		open: true,
 		text: [ // Disbursement and collections made easy.
-			{id: 1, text:"Disbursement"},
+			{id: 1, text:"Disbursements"},
 			{id: 2, text:"and collections"},
-			{id: 3, text:"made easy."}
+			{id: 3, text:"made easy."},
+			{id: 4, text:""}
 		],
 		arrows: [
 			{x:0,y:0,d:0,s:1},
@@ -71,7 +72,7 @@ var screensaver = new Vue({
 			{x:0,y:0,d:0,s:1},
 			{x:0,y:0,d:0,s:1}
 		],
-		ss_current: 0
+		ss_current: 1
 	},
 	created: function(){
 		this.init();
@@ -89,7 +90,7 @@ var screensaver = new Vue({
 				this.arrows[i].d = Math.round(Math.random() * 4000);
 				this.arrows[i].s = Math.random() * .7 + .3;
 			}
-			ss_slide = setInterval(this.textFade, 3000);
+			ss_slide = setInterval(this.textFade, 1500);
 			menu.isOpen = false;
 		},
 		textFade: function(){
@@ -105,7 +106,7 @@ var screensaver = new Vue({
 			this.open = false;
 		},
 		nextbtn : function() { 
-			menu.load_ff();
+			menu.load_pp();
 		}
 	}
 })
@@ -181,7 +182,7 @@ var fast_facts = new Vue({
 			})
 		},
 		nextbtn : function() { 
-			menu.load_pp();
+			menu.load_cs();
 		}
 	}
 })
@@ -466,7 +467,7 @@ var pain_points = new Vue({
 			//pp_tick = setInterval(this.tick, 10);
 		},
 		nextbtn : function() { 
-			menu.load_cs();
+			menu.load_ff();
 		}
 	}
 })
