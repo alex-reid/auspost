@@ -194,27 +194,27 @@ var pain_points = new Vue({
 	el: "#pain_points",
 	data: {
 		open: true,
-		circles: [
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'},
-			{x:0,y:0,z:0,t:0,type:'bg'}
-		],
+		// circles: [
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'},
+		// 	{x:0,y:0,z:0,t:0,type:'bg'}
+		// ],
 		timer: 0,
 		stage: {
 			w: 804,
@@ -519,7 +519,7 @@ var case_studies = new Vue({
 // jquery
 
 var ss_timeout;
-var time = 30000;
+var time = 60000;
 
 function timeout(){
 	ss_timeout = setTimeout(function(){

@@ -349,6 +349,9 @@ strong{
         .sbutton{
             color: #3FBFAB;
         }
+        .ss_img_pad{
+            margin: 2rem;
+        }
         overflow: hidden;
         z-index: 1000;
         &.open{
@@ -681,6 +684,8 @@ strong{
             transform: translateX(-20px);
         }
     }
+
+
     #case_studies{
         width: $canvas-width;
         height: 100%;
@@ -704,6 +709,7 @@ strong{
             }
             h2{
                 font-size: 36px;
+                font-weight: bold;
             }
             .centerHV{
                 width: 100%;
@@ -741,6 +747,9 @@ strong{
                         text-shadow: none;
                         text-align: left;
                         font-weight: bold;
+                    }
+                    p{
+                        font-weight: normal;
                     }
                 }
                 .blackout{
