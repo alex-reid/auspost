@@ -568,7 +568,7 @@ strong{
                     opacity: 1;
                 }
                 &.shown{
-                    transform: translate(240px, 50vh) !important;
+                    transform: translate3d(240px, 50vh, 0) !important;
                     .circ_hold{
                         width: 400px;
                         height: 400px;

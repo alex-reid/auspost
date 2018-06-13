@@ -523,9 +523,8 @@ strong {
         #mainstage #pain_points .circle.foreground.bg {
           opacity: 1; }
         #mainstage #pain_points .circle.foreground.shown {
-          -webkit-transform: translate(240px, 50vh) !important;
-          -ms-transform: translate(240px, 50vh) !important;
-          transform: translate(240px, 50vh) !important;
+          -webkit-transform: translate3d(240px, 50vh, 0) !important;
+          transform: translate3d(240px, 50vh, 0) !important;
           z-index: 110 !important; }
           #mainstage #pain_points .circle.foreground.shown .circ_hold {
             width: 400px;
