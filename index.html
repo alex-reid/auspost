@@ -89,6 +89,7 @@
 
     <section id="pain_points" v-bind:class="{ open: open }" v-bind:style="{ 'perspective-origin' : stage.px+'% '+stage.py+'%' }">
       <h2 class="pp_heading">Typical government pain points</h2>
+      <h3 class="pp_heading">click to discover</h3>
       <span v-if="!pp_overview" v-on:click="overview()" class="switch_view"><b>View as list</b></span>
       <span v-if="pp_overview" v-on:click="hide_overview()" class="switch_view"><b>Go back</b></span>
       <div class="white_text">
@@ -103,7 +104,7 @@
         v-on:click="load_pp(index)" 
         v-for="(pp_item, index) in pp_items" 
         v-bind:style="{ 'transform' : 'translate3d(' + (pp_item.x + 90) + 'px,' + (pp_item.y + 90) + 'px, ' + pp_item.z + 'px)' }" 
-        v-bind:class="{ foreground : pp_item.show, shown : pp_item.show, floating : pp_item.f }"
+        v-bind:class="{ foreground : pp_item.show, shown : pp_item.show, bg : pp_show, floating : pp_item.f }"
         v-on:transitionend="call(index)"
       >
         <div class="circ_hold">
@@ -124,16 +125,7 @@
           </div>
         </div>
       </transition>
-<!--       <div v-for="circle in circles" class="circle" v-bind:style="{ 'transform' : 'translate3d(' + circle.x + 'px,' + circle.y + 'px,' + circle.z + 'px)', 'z-index' : circle.z}">
-        <div class="inner_1">
-        </div>
-        <div class="inner_2">
-        </div>
-        <div class="center">
-        </div>
-        <div class="overlay" v-bind:style="{ 'opacity' : -circle.z / 600 }">
-        </div>
-      </div> -->
+
       <div class="sbutton" v-on:click="nextbtn">fast facts &raquo;</div>
     </section>
 
@@ -206,6 +198,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
   <script src="js/plugins.js"></script>
+  <!-- <script src="js/vue.js"></script> -->
   <script src="js/vue.min.js"></script>
   <script src="js/main.js"></script>
 </body>

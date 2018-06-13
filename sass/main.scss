@@ -351,6 +351,8 @@ strong{
         }
         .ss_img_pad{
             margin: 2rem;
+            position: relative;
+            z-index: 100;
         }
         overflow: hidden;
         z-index: 1000;
@@ -392,13 +394,18 @@ strong{
     }
 
     #pain_points{
-        h2.pp_heading{
+        .pp_heading{
             font-size: 2rem;
             color: $white;
             text-align: center;
             position: absolute;
             top: 0px;
             width: 100%;
+        }
+        h3.pp_heading{
+            font-size: 1rem;
+            font-weight: normal;
+            top: 3rem;
         }
         width: $canvas-width;
         height: 100%;
@@ -429,26 +436,22 @@ strong{
         }
         .cover{
             position: absolute;
-            width: 100%;
-            height: 100%;
+            width: 160%;
+            height: 160%;
             top: 0px;
             left: 0px;
             background-color: #7EB6D8;
-            opacity: 0.8;
+            opacity: 0;
             z-index: 100;
-            //z-index: -1000;
-            &.shown{
-                z-index: 100;
-                opacity: 0.8;
-                transition: opacity .5s linear;
-            }
+            //transform: translate3d(-20%,-20%,-59px);
         }
         .pp_fade-enter-active, .pp_fade-leave-active {
-          transition: opacity .5s;
+          transition: opacity .5s, transform .5s;
+
         }
         .pp_fade-enter, .pp_fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
           opacity: 0;
-          //transform: translateX(-20px);
+          
         }
         .pp_fade-leave-to{
            // transform: translateX(20px);
@@ -477,10 +480,10 @@ strong{
             width: 0px;
             height: 0px;
             position: absolute;
-            transition: transform .5s ease-out;
+            transition: transform .5s ease-out, opacity .5s ease-out;
             z-index: 0;
             &.floating{
-                transition: transform 2s linear;
+                transition: transform 2s linear, opacity .5s ease-out;
             }
             *{
                 transition: background-color 1s;
@@ -553,11 +556,17 @@ strong{
                 top: 0px;
                 opacity: 0;
             }
+            &.bg{
+                    opacity: 0.2;
+                }
             &.foreground{
                 width: 0px;
                 height: 0px;
                 background-color: #817AE4;
                 z-index: 0;
+                &.bg{
+                    opacity: 1;
+                }
                 &.shown{
                     transform: translate(240px, 50vh) !important;
                     .circ_hold{

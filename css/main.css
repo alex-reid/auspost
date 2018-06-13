@@ -298,7 +298,9 @@ strong {
     #mainstage #screensaver .sbutton {
       color: #3FBFAB; }
     #mainstage #screensaver .ss_img_pad {
-      margin: 2rem; }
+      margin: 2rem;
+      position: relative;
+      z-index: 100; }
     #mainstage #screensaver.open {
       display: block;
       opacity: 1; }
@@ -354,13 +356,17 @@ strong {
     -o-transition: perspective-origin 2s linear;
     transition: perspective-origin 2s linear;
     transition: perspective-origin 2s linear, -webkit-perspective-origin 2s linear; }
-    #mainstage #pain_points h2.pp_heading {
+    #mainstage #pain_points .pp_heading {
       font-size: 2rem;
       color: #ffffff;
       text-align: center;
       position: absolute;
       top: 0px;
       width: 100%; }
+    #mainstage #pain_points h3.pp_heading {
+      font-size: 1rem;
+      font-weight: normal;
+      top: 3rem; }
     #mainstage #pain_points .sbutton {
       color: #7EB6D8; }
     #mainstage #pain_points.open {
@@ -375,23 +381,19 @@ strong {
       padding: 10px; }
     #mainstage #pain_points .cover {
       position: absolute;
-      width: 100%;
-      height: 100%;
+      width: 160%;
+      height: 160%;
       top: 0px;
       left: 0px;
       background-color: #7EB6D8;
-      opacity: 0.8;
+      opacity: 0;
       z-index: 100; }
-      #mainstage #pain_points .cover.shown {
-        z-index: 100;
-        opacity: 0.8;
-        -webkit-transition: opacity .5s linear;
-        -o-transition: opacity .5s linear;
-        transition: opacity .5s linear; }
     #mainstage #pain_points .pp_fade-enter-active, #mainstage #pain_points .pp_fade-leave-active {
-      -webkit-transition: opacity .5s;
-      -o-transition: opacity .5s;
-      transition: opacity .5s; }
+      -webkit-transition: opacity .5s, -webkit-transform .5s;
+      transition: opacity .5s, -webkit-transform .5s;
+      -o-transition: opacity .5s, transform .5s;
+      transition: opacity .5s, transform .5s;
+      transition: opacity .5s, transform .5s, -webkit-transform .5s; }
     #mainstage #pain_points .pp_fade-enter, #mainstage #pain_points .pp_fade-leave-to {
       opacity: 0; }
     #mainstage #pain_points .pp_content {
@@ -420,18 +422,18 @@ strong {
       width: 0px;
       height: 0px;
       position: absolute;
-      -webkit-transition: -webkit-transform .5s ease-out;
-      transition: -webkit-transform .5s ease-out;
-      -o-transition: transform .5s ease-out;
-      transition: transform .5s ease-out;
-      transition: transform .5s ease-out, -webkit-transform .5s ease-out;
+      -webkit-transition: opacity .5s ease-out, -webkit-transform .5s ease-out;
+      transition: opacity .5s ease-out, -webkit-transform .5s ease-out;
+      -o-transition: transform .5s ease-out, opacity .5s ease-out;
+      transition: transform .5s ease-out, opacity .5s ease-out;
+      transition: transform .5s ease-out, opacity .5s ease-out, -webkit-transform .5s ease-out;
       z-index: 0; }
       #mainstage #pain_points .circle.floating {
-        -webkit-transition: -webkit-transform 2s linear;
-        transition: -webkit-transform 2s linear;
-        -o-transition: transform 2s linear;
-        transition: transform 2s linear;
-        transition: transform 2s linear, -webkit-transform 2s linear; }
+        -webkit-transition: opacity .5s ease-out, -webkit-transform 2s linear;
+        transition: opacity .5s ease-out, -webkit-transform 2s linear;
+        -o-transition: transform 2s linear, opacity .5s ease-out;
+        transition: transform 2s linear, opacity .5s ease-out;
+        transition: transform 2s linear, opacity .5s ease-out, -webkit-transform 2s linear; }
       #mainstage #pain_points .circle * {
         -webkit-transition: background-color 1s;
         -o-transition: background-color 1s;
@@ -511,11 +513,15 @@ strong {
         left: 0px;
         top: 0px;
         opacity: 0; }
+      #mainstage #pain_points .circle.bg {
+        opacity: 0.2; }
       #mainstage #pain_points .circle.foreground {
         width: 0px;
         height: 0px;
         background-color: #817AE4;
         z-index: 0; }
+        #mainstage #pain_points .circle.foreground.bg {
+          opacity: 1; }
         #mainstage #pain_points .circle.foreground.shown {
           -webkit-transform: translate(240px, 50vh) !important;
           -ms-transform: translate(240px, 50vh) !important;

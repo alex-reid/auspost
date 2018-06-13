@@ -310,9 +310,9 @@ var pain_points = new Vue({
 	},
 	created: function(){
 
-			for (var i = this.circles.length -1; i >= 0; i--) {
-				this.random(this.circles[i]);
-			}
+			// for (var i = this.circles.length -1; i >= 0; i--) {
+			// 	this.random(this.circles[i]);
+			// }
 			this.init();
 
 			// start timer 10ms run "tick" function
@@ -325,7 +325,7 @@ var pain_points = new Vue({
 				this.pp_items[i].cx = this.pp_items[i].x;
 				this.pp_items[i].cy = this.pp_items[i].y;
 				this.pp_items[i].cz = this.pp_items[i].z;
-				this.pp_items[i].t = round_rand(200);
+				this.pp_items[i].t = round_rand(50)+145;
 				this.pp_items[i].f = true;
 				//this.pp_items[i].show = false;
 			}
@@ -355,7 +355,7 @@ var pain_points = new Vue({
 			el.x = round_rand(this.stage.w);
 			el.y = round_rand(this.stage.h);
 			el.z = -round_rand(300) - 10;
-			el.t = round_rand(100) + 100;
+			el.t = round_rand(50)+145;
 			// el.mx = this.stage.w * ( -el.x / 300 + 1);
 			// console.log(el.z+" "+el.mx);
 			// el.my = this.stage.h * ( -el.y / 300 + 1);
@@ -365,7 +365,7 @@ var pain_points = new Vue({
 			el.x = el.cx + (round_rand(40) - 20);
 			el.y = el.cy + (round_rand(40) - 20);
 
-			el.t = round_rand(200);
+			el.t = round_rand(50)+145;
 		},
 		move: function(el){
 
@@ -377,7 +377,7 @@ var pain_points = new Vue({
 			el.y += y;
 			if(el.y > this.stage.h || el.y < 0) el.y -= y * 2;
 
-			el.t = round_rand(200);
+			el.t = round_rand(50)+145;
 		},
 		touch: function(){
 			// touch gestures
@@ -397,7 +397,7 @@ var pain_points = new Vue({
 			clearInterval(pp_tick);
 			for (var i = this.pp_items.length -1; i >= 0; i--) {
 				this.pp_items[i].x = (i < 4)? -60 : this.stage.w / 1.8;
-				this.pp_items[i].y = (i < 4)? i * 200 -30 : (i-4) * 200 -30;
+				this.pp_items[i].y = (i < 4)? i * 200 -20 : (i-4) * 200 -20;
 				this.pp_items[i].z = -60;
 			}
 			this.pp_overview = true;
