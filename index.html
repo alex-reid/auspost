@@ -56,7 +56,7 @@
     </nav>
     <transition name="ss_fadein">
       <section id="screensaver" v-if="open" v-on:click="destroy">
-        <img src="img/ap-logo.svg" width="120" class="ss_img_pad" />
+        <img src="img/ap-logo.svg" width="200" class="ss_img_pad" />
         <span class="ss_arrow" v-for="arrow in arrows" v-bind:style="{ left: arrow.x+'px', top: arrow.y+'px', transform: 'scale('+arrow.s+','+arrow.s+')', opacity: arrow.s - .2}">
           <img src="img/ss_arrow.svg" width="150" v-bind:style="{ 'animation-delay': -arrow.d+'ms' }"/>
         </span>
@@ -82,6 +82,11 @@
           <transition name="ff_fade">
             <p v-if="card.depth == current" v-html="card.text"></p>
           </transition>
+        </li>
+      </ul>
+      <ul class="ff_dots">
+        <li class="dot" v-bind:class="'i_'+index" v-for="(card, index) in cards">
+            <span v-bind:class="[card.depth == current ? 'active' : '']" ></span>
         </li>
       </ul>
       <div class="sbutton" v-on:click="nextbtn">case studies &raquo;</div>
@@ -125,7 +130,7 @@
           </div>
         </div>
       </transition>
-
+      <p class="pp_info">Talk to your Account Manager about how we can help with these pain points</p>
       <div class="sbutton" v-on:click="nextbtn">fast facts &raquo;</div>
     </section>
 
@@ -141,14 +146,14 @@
           <transition name="cs_text_fade">
             <span v-if="current == 'closed'" class="centerHV">
               <h3>Case Study</h3>
-              <h2>Cash Disbursement</h2>
+              <h2>Cash Disbursements</h2>
               <p>Emergency relief</p>
             </span>
           </transition>
           <transition name="cs_fade">
             <div v-if="current == 'cs1'" class="cs_copy">
               <h3 v-on:click.stop="current = 'closed'; play(false)">< Back to Case Studies</h3>
-              <h2>Cash Disbursement</h2>
+              <h2>Cash Disbursements</h2>
               <p>
                 Julia is a third generation sugar cane farmer from rural Queensland. When heavy rains caused the Herbert River to break its banks and floodwaters inundated her property, she lost everything. Her home. Her livelihood.
               </p>

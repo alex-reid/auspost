@@ -432,7 +432,15 @@ strong{
             font-weight: normal;
             font-size: 1.2rem;
             color: $white;
-            padding: 10px;
+            padding: 36px;
+        }
+        p.pp_info{
+            color: $white;
+            text-align: center;
+            position: absolute;
+            width: 100%;
+            top: 83vh;
+            margin: 0;
         }
         .cover{
             position: absolute;
@@ -692,6 +700,49 @@ strong{
         .ff_fade-leave-to{
             transform: translateX(-20px);
         }
+        ul.ff_dots{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            position: absolute;
+            width: 100%;
+            top: 88vh;
+            justify-content: center;
+            li{
+                padding: 10px;
+                span{
+                    display: block;
+                    background-color: rgba(255,255,255,0.3);
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    transition: background-color .5s;
+                    &.active{
+                        background-color: rgba(255,255,255,1);
+                    }
+                }
+                &.i_0{
+                    order: 1;
+                }
+                &.i_1{
+                    order: 6;
+                }
+                &.i_2{
+                    order: 5;
+                }
+                &.i_3{
+                    order: 4;
+                }
+                &.i_4{
+                    order: 3;
+                }
+                &.i_5{
+                    order: 2;
+                }
+            }
+        }
+
     }
 
 

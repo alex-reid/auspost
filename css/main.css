@@ -378,7 +378,14 @@ strong {
       font-weight: normal;
       font-size: 1.2rem;
       color: #ffffff;
-      padding: 10px; }
+      padding: 36px; }
+    #mainstage #pain_points p.pp_info {
+      color: #ffffff;
+      text-align: center;
+      position: absolute;
+      width: 100%;
+      top: 83vh;
+      margin: 0; }
     #mainstage #pain_points .cover {
       position: absolute;
       width: 160%;
@@ -650,6 +657,56 @@ strong {
       -webkit-transform: translateX(-20px);
       -ms-transform: translateX(-20px);
       transform: translateX(-20px); }
+    #mainstage #fast_facts ul.ff_dots {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      position: absolute;
+      width: 100%;
+      top: 88vh;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center; }
+      #mainstage #fast_facts ul.ff_dots li {
+        padding: 10px; }
+        #mainstage #fast_facts ul.ff_dots li span {
+          display: block;
+          background-color: rgba(255, 255, 255, 0.3);
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          -webkit-transition: background-color .5s;
+          -o-transition: background-color .5s;
+          transition: background-color .5s; }
+          #mainstage #fast_facts ul.ff_dots li span.active {
+            background-color: white; }
+        #mainstage #fast_facts ul.ff_dots li.i_0 {
+          -webkit-box-ordinal-group: 2;
+          -ms-flex-order: 1;
+          order: 1; }
+        #mainstage #fast_facts ul.ff_dots li.i_1 {
+          -webkit-box-ordinal-group: 7;
+          -ms-flex-order: 6;
+          order: 6; }
+        #mainstage #fast_facts ul.ff_dots li.i_2 {
+          -webkit-box-ordinal-group: 6;
+          -ms-flex-order: 5;
+          order: 5; }
+        #mainstage #fast_facts ul.ff_dots li.i_3 {
+          -webkit-box-ordinal-group: 5;
+          -ms-flex-order: 4;
+          order: 4; }
+        #mainstage #fast_facts ul.ff_dots li.i_4 {
+          -webkit-box-ordinal-group: 4;
+          -ms-flex-order: 3;
+          order: 3; }
+        #mainstage #fast_facts ul.ff_dots li.i_5 {
+          -webkit-box-ordinal-group: 3;
+          -ms-flex-order: 2;
+          order: 2; }
   #mainstage #case_studies {
     width: calc(100vw - 70px);
     height: 100%;

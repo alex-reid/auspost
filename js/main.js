@@ -120,7 +120,7 @@ var fast_facts = new Vue({
 		cards: [
 			{ img: "img/ff_img_3.svg", depth: 1, text: "<strong>$3b</strong> In over the counter financial services transactions annually" },
 			{ img: "img/ff_img_4.svg", depth: 2, text: "Helping over <strong>750</strong> businesses and government agencies" },
-			{ img: "img/ff_img_5.svg", depth: 3, text: "<strong>30</strong> years of payment management experience" },
+			{ img: "img/ff_img_5.svg", depth: 3, text: "<strong>Over 30</strong> years of payment management experience" },
 			{ img: "img/ff_img_6.svg", depth: 4, text: "<strong>60%</strong> of Australian online transactions are powered through SecurePay" },
 			{ img: "img/ff_img_1.svg", depth: 5, text: "<strong>181M</strong> digital visits annually" },
 			{ img: "img/ff_img_2.svg", depth: 6, text: "More than <strong>3,500</strong> payment collection points across our network" }
@@ -231,7 +231,7 @@ var pain_points = new Vue({
 			{ 
 				id : 0,
 				show: false,
-				title: "Reach limitations",
+				title: "Reaching rural customers",
 				text: "Difficulty in providing immediate financial relief in rural areas. Limited ability to identify consumer groups at speed and address rural unbanked collections.",
 				x : 24,
 				y : 36,
@@ -268,7 +268,7 @@ var pain_points = new Vue({
 				id : 4,
 				show: false,
 				title: "Cost inefficiencies",
-				text: "Cost of OTC (and cash management) services and leakage due to payment errors increase overall costs. Lack of differentiated pricing for intergovernmental payments.",
+				text: "Cost of over the counter (and cash management) services and leakage due to payment errors increase overall costs. Lack of differentiated pricing for intergovernmental payments.",
 				x : 72,
 				y : 420,
 				z : -50
@@ -396,9 +396,9 @@ var pain_points = new Vue({
 		overview: function(){
 			clearInterval(pp_tick);
 			for (var i = this.pp_items.length -1; i >= 0; i--) {
-				this.pp_items[i].x = (i < 4)? -60 : this.stage.w / 1.8;
-				this.pp_items[i].y = (i < 4)? i * 200 -20 : (i-4) * 200 -20;
-				this.pp_items[i].z = -60;
+				this.pp_items[i].x = (i < 4)? -100 : this.stage.w / 1.8;
+				this.pp_items[i].y = (i < 4)? i * 200 -60 : (i-4) * 200 -60;
+				this.pp_items[i].z = -100;
 			}
 			this.pp_overview = true;
 			this.pp_items.filter(function(pp,i) {
