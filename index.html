@@ -130,7 +130,7 @@
           </div>
         </div>
       </transition>
-      <p class="pp_info">Talk to your Account Manager about how we can help with these pain points</p>
+      <p class="pp_info">Talk to your Account Manager about<br/>how we can help with these pain points</p>
       <div class="sbutton" v-on:click="nextbtn">fast facts &raquo;</div>
     </section>
 
@@ -146,14 +146,14 @@
           <transition name="cs_text_fade">
             <span v-if="current == 'closed'" class="centerHV">
               <h3>Case Study</h3>
-              <h2>Cash Disbursements</h2>
+              <h2>Disbursements</h2>
               <p>Emergency relief</p>
             </span>
           </transition>
           <transition name="cs_fade">
             <div v-if="current == 'cs1'" class="cs_copy">
               <h3 v-on:click.stop="current = 'closed'; play(false)">< Back to Case Studies</h3>
-              <h2>Cash Disbursements</h2>
+              <h2>Disbursements</h2>
               <p>
                 Julia is a third generation sugar cane farmer from rural Queensland. When heavy rains caused the Herbert River to break its banks and floodwaters inundated her property, she lost everything. Her home. Her livelihood.
               </p>
